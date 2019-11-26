@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="alternate" href="/atom.xml" title="善能" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="嵌入式、openwrt、c、前端">
+<meta property="og:type" content="website">
+<meta property="og:title" content="善能">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;index.html">
+<meta property="og:site_name" content="善能">
+<meta property="og:description" content="嵌入式、openwrt、c、前端">
+<meta property="og:locale" content="zh-Hans">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: true,
+    isPost: false,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>善能</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d1ce12d4aba207e7426f17e9abd16b65";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">善能</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">一朝风月 万古长空</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/09/06/spf13%E9%85%8D%E7%BD%AEYouCompleteMe/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/wln.jpg">
+      <meta itemprop="name" content="Darkknight">
+      <meta itemprop="description" content="嵌入式、openwrt、c、前端">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="善能">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2015/09/06/spf13%E9%85%8D%E7%BD%AEYouCompleteMe/" class="post-title-link" itemprop="url">spf13配置YouCompleteMe</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2015-09-06 01:10:20" itemprop="dateCreated datePublished" datetime="2015-09-06T01:10:20+08:00">2015-09-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-26 19:02:36" itemprop="dateModified" datetime="2019-11-26T19:02:36+08:00">2019-11-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux-vim/" itemprop="url" rel="index">
+                    <span itemprop="name">linux vim</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="spf13配置YouCompleteMe"><a href="#spf13配置YouCompleteMe" class="headerlink" title="spf13配置YouCompleteMe"></a>spf13配置YouCompleteMe</h1><h2 id="本文适用"><a href="#本文适用" class="headerlink" title="本文适用"></a>本文适用</h2><ul>
+<li>不熟悉spf13安装插件方法  </li>
+<li>想使用YouCompleteMe，C补全，并可跳转到相关函数定义或声明</li>
+</ul>
+<h2 id="完成安装后的想法"><a href="#完成安装后的想法" class="headerlink" title="完成安装后的想法"></a>完成安装后的想法</h2><p>YoucompleteMe的难点，只在于自动跳转和Ultisnips的自动补全<br>基于spf13安装的YouCompleMe，已预设Ultisnips的绑定键操作<br>官方的推荐已经很不错，自动补全针对于#ifndef还是有问题，选中后只用Ctrl+j无反应<br>暂未解决<br>spf13会自动卸载相关冲突的自动补全<br><strong>参见:</strong></p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~<span class="string">/.vimrc</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">691</span> <span class="comment">" remap Ultisnips for compatibility for YCM</span></span><br><span class="line"><span class="number">692</span> <span class="keyword">let</span> <span class="variable">g:UltiSnipsExpandTrigger</span> = <span class="string">'&lt;C-j&gt;'</span></span><br><span class="line"><span class="number">693</span> <span class="keyword">let</span> <span class="variable">g:UltiSnipsJumpForwardTrigger</span> = <span class="string">'&lt;C-j&gt;'</span></span><br><span class="line"><span class="number">694</span> <span class="keyword">let</span> <span class="variable">g:UltiSnipsJumpBackwardTrigger</span> = <span class="string">'&lt;C-k&gt;'</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="spf13下安装YouCompleteMe和YCM-Generator"><a href="#spf13下安装YouCompleteMe和YCM-Generator" class="headerlink" title="spf13下安装YouCompleteMe和YCM-Generator"></a>spf13下安装YouCompleteMe和YCM-Generator</h2><figure class="highlight scilab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">echo <span class="string">"let g:spf13_bundle_groups=['</span>general', <span class="string">'writing'</span>, <span class="string">'programming'</span>, <span class="string">'php'</span>, <span class="string">'ruby'</span>, <span class="string">'python'</span>, <span class="string">'javascript'</span>, <span class="string">'go'</span>, <span class="string">'html'</span>, <span class="string">'misc'</span>, <span class="string">'youcompleteme'</span>, ]<span class="string">" &gt;&gt; ~/.vimrc.before.local</span></span><br><span class="line"><span class="string">echo "</span>Bundle <span class="string">'rdnetto/YCM-Generator'</span><span class="string">" &gt;&gt; ~/.vimrc.bundles.local</span></span><br><span class="line"><span class="string">vim +BundleInstall! +BundleClean</span></span><br></pre></td></tr></table></figure>
+<p>YouCompleteMe较大安装速度较慢，也可直接clone相关目录，而后再执行安装命令。<br>YCM-Generator针对不同工程，自动生成.ycm_extra_conf.py文件。<br>我通常只是进行c语言的开发，所以将.ycm_extra_conf.py文件拷贝到”~/“目录，并在.vimrc.local中指定，详见下文描述。</p>
+<h3 id="Mac-OS-X-安装"><a href="#Mac-OS-X-安装" class="headerlink" title="Mac OS X 安装"></a>Mac OS X 安装</h3><p>Mac下需要通过brew安装CMake,而后编译YouCompleteMe  </p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">brew install CMake</span><br><span class="line"><span class="keyword">cd</span> ~<span class="string">/.vim/bundle/YouCompleteMe</span></span><br><span class="line"><span class="string">./install.py</span> <span class="params">--clang-completer</span></span><br></pre></td></tr></table></figure>
+
+<p>针对于YCM-Generator，安装完成后，可通过以下命令验证是否成功</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cd</span> ~<span class="string">/.vim/bundle/YCM-Generator</span></span><br><span class="line"><span class="string">./config_gen.py</span> <span class="params">--help</span></span><br></pre></td></tr></table></figure>
+<p>如果提示  </p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">env: python2:</span> <span class="literal">No</span> <span class="string">such</span> <span class="string">file</span> <span class="string">or</span> <span class="string">directory</span></span><br></pre></td></tr></table></figure>
+<p>则为pyton路径没有找到，通过如下命令创建软连接</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -sf <span class="regexp">/usr/</span>bin<span class="regexp">/python /u</span>sr<span class="regexp">/bin/</span>python2</span><br></pre></td></tr></table></figure>
+<p>当出现相关帮助信息时，则安装完成。</p>
+<p>通过vim打开工程目录下的文件，此文件最好和Makefile在同目录。<br>而后，在vim中执行命令</p>
+<figure class="highlight clojure"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">:CCGenerateConfig</span></span><br></pre></td></tr></table></figure>
+<p>则会在打开的文件目录，生成.ycm_extra_conf.py文件。<br>重启vim后，才能够使用。所以，我直接配置了全局.ycm_extra_conf.py文件。<br>此文件中注释也比较详细，可自行浏览。</p>
+<p> ~/.vimrc.local中，关于YouCompleteMe的配置</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">"不使用补全的文件列表</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">g:ycm_filetype_blacklist</span> = &#123;</span><br><span class="line">      \ <span class="string">'tagbar'</span> : <span class="number">1</span>,</span><br><span class="line">      \ <span class="string">'qf'</span> : <span class="number">1</span>,</span><br><span class="line">      \ <span class="string">'notes'</span> : <span class="number">1</span>,</span><br><span class="line">      \ <span class="string">'unite'</span> : <span class="number">1</span>,</span><br><span class="line">      \ <span class="string">'text'</span> : <span class="number">1</span>,</span><br><span class="line">      \ <span class="string">'vimwiki'</span> : <span class="number">1</span>,</span><br><span class="line">      \ <span class="string">'gitcommit'</span> : <span class="number">1</span>,</span><br><span class="line">      \&#125;</span><br><span class="line"><span class="comment">"指定配置文件位置</span></span><br><span class="line"><span class="comment">"我日常都在c下工作，所以使用生成文件后，直接指定为默认</span></span><br><span class="line"><span class="comment">"大家可以根据自己的工作环境，决定是否配置此选项</span></span><br><span class="line"><span class="comment">"此选项的优先级最低，优先查找工程目录中是否有.ycm_extra_conf.py文件</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">g:ycm_global_ycm_extra_conf</span> = <span class="string">'~/.ycm_extra_conf.py'</span></span><br><span class="line"><span class="comment">"每次打开无需提示是否读取.ycm_extra_conf.py文件</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">g:ycm_confirm_extra_conf</span> = <span class="number">0</span></span><br><span class="line"><span class="comment">"实时语法检查</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">g:syntastic_always_populate_loc_list</span> = <span class="number">1</span></span><br><span class="line"><span class="comment">",jd映射为跳转到相关“声明“或”定义“位置</span></span><br><span class="line"><span class="keyword">nnoremap</span> <span class="symbol">&lt;leader&gt;</span>jd :YcmCompleter GoToDefinitionElseDeclaration<span class="symbol">&lt;CR&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>对于较为复杂的工程，推荐使用bear生成相关文件，我的工程依靠.ycm_extra_conf.py已经足够。如果想要了解，请参考参考链接。</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://github.com/Valloric/YouCompleteMe#user-guide" target="_blank" rel="noopener">YouCompleteMe官方用户向导</a></p>
+<p><a href="http://tieba.baidu.com/p/2672605209" target="_blank" rel="noopener">vim智能补全插件YouCompleteMe新手完全攻略</a></p>
+<p><a href="http://feihu.me/blog/2014/intro-to-vim/#section-3" target="_blank" rel="noopener">跟我一起学习VIM - The Life Changing Editor</a></p>
+<p><a href="http://vim.spf13.com/" target="_blank" rel="noopener">spf13官方介绍</a></p>
+<h2 id="TIPS"><a href="#TIPS" class="headerlink" title="TIPS"></a>TIPS</h2><ul>
+<li><p>spf13 安装插件  </p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">"安装vim-colors的例子</span></span><br><span class="line"><span class="keyword">echo</span> Bundle \<span class="string">'spf13/vim-colors\'</span> &gt;&gt; ~/.vimrc.bundles.local  </span><br><span class="line"><span class="keyword">vim</span> +BundleInstall! +BundleClean</span><br></pre></td></tr></table></figure></li>
+<li><p>spf13 卸载插件</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">"卸载即使将Bundle更改为UnBundle</span></span><br><span class="line"><span class="keyword">echo</span> UnBundle \<span class="string">'AutoClose\'</span> &gt;&gt; ~/.vimrc.bundles.local</span><br><span class="line"><span class="keyword">echo</span> UnBundle \<span class="string">'scrooloose/syntastic\'</span> &gt;&gt; ~/.vimrc.bundles.local</span><br><span class="line"><span class="keyword">vim</span> +BundleClean!</span><br></pre></td></tr></table></figure></li>
+<li><p>查看已安装插件列表</p>
+<figure class="highlight erlang-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim +BundleList!</span><br></pre></td></tr></table></figure></li>
+<li><p>小命令</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">:BundleList</span>          <span class="comment">#已安装列表</span></span><br><span class="line"><span class="symbol">:BundleInstall</span>(!)    <span class="comment">#安装、升级</span></span><br><span class="line"><span class="symbol">:BundleSearch</span>(!)     <span class="comment">#搜索</span></span><br><span class="line"><span class="symbol">:YcmDiags</span>            <span class="comment">#可以打开location-list查看警告和错误信息</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/07/25/LFS7-7%E7%BC%96%E8%AF%91%E8%A6%81%E7%82%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/wln.jpg">
+      <meta itemprop="name" content="Darkknight">
+      <meta itemprop="description" content="嵌入式、openwrt、c、前端">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="善能">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2015/07/25/LFS7-7%E7%BC%96%E8%AF%91%E8%A6%81%E7%82%B9/" class="post-title-link" itemprop="url">LFS7.7编译要点</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2015-07-25 00:50:35" itemprop="dateCreated datePublished" datetime="2015-07-25T00:50:35+08:00">2015-07-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-26 19:02:36" itemprop="dateModified" datetime="2019-11-26T19:02:36+08:00">2019-11-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="LFS7-7-编译安装记录"><a href="#LFS7-7-编译安装记录" class="headerlink" title="LFS7.7 编译安装记录"></a>LFS7.7 编译安装记录</h1><h2 id="编译完成后的想法"><a href="#编译完成后的想法" class="headerlink" title="编译完成后的想法"></a>编译完成后的想法</h2><p>断断续续折腾了两个星期，此次编译安装的心得，果如古人云“<strong>欲速则不达</strong>”。<br>反思编译安装过程，需要注意以下问题：  </p>
+<ul>
+<li><strong>首先通读LFS整篇文档，了解每个步骤的主要工作</strong>  </li>
+<li><strong>检查当前编译环境，相关编译工具是否安装完成</strong></li>
+<li><strong>退出当前编译环境后，怎样重回LFS的编译环境</strong></li>
+</ul>
+<p>LFS 主要是帮助大家理解Linux系统整体流程，通读文档，就会有一个很好的了解。<br>那么进行此次编译的目的，也就达到。</p>
+<h2 id="LFS7-7-在线阅读"><a href="#LFS7-7-在线阅读" class="headerlink" title="LFS7.7 在线阅读"></a>LFS7.7 在线阅读</h2><p><a href="http://www.linuxfromscratch.org/lfs/downloads/7.7/LFS-BOOK-7.7-NOCHUNKS.html" target="_blank" rel="noopener">LFS7.7 官方在线阅读地址</a>  </p>
+<ul>
+<li><strong>请注意查阅最新章节</strong><h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2></li>
+</ul>
+<p><strong>编译环境</strong><br><strong>主机：MacBook Pro  Model：A1502</strong><br><strong>VirtualBox安装：Ubuntu 14.04.2 LTS (GNU/Linux 3.16.0-30-generic x86_64)</strong><br>针对于ubuntu宿主环境，需要安装以下程序</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="builtin-name">get</span> install bison      </span><br><span class="line">sudo apt-<span class="builtin-name">get</span> install texinfo</span><br></pre></td></tr></table></figure>
+<ul>
+<li>参考<a href="https://github.com/lijianying10/FixLinux/blob/master/prob/LFS%20journey.md" target="_blank" rel="noopener">LFS编译过程必备辅助手册</a></li>
+</ul>
+<p>并根据手册，运行相关脚本检测当前系统程序版本和相关库。<br>不超出推荐版本，即可。</p>
+<p>运行library-check.sh检测脚本出现以下提示，亦无问题（LFS有相关说明）。  </p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">aurora<span class="meta">@aurora</span>-<span class="string">VirtualBox:</span>~/lfs$ bash library-check.sh</span><br><span class="line">libgmp.<span class="string">la:</span> not found</span><br><span class="line">libmpfr.<span class="string">la:</span> not found</span><br><span class="line">libmpc.<span class="string">la:</span> not found</span><br></pre></td></tr></table></figure>
+<p><strong>删除指定sources文件夹之外的文件夹</strong>  </p>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls |<span class="type">grep</span> -v sources|<span class="type">xargs</span> sudo rm -rf</span><br></pre></td></tr></table></figure>
+
+<p><strong>删除当前目录下其他文件夹</strong></p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find -<span class="keyword">type</span> <span class="type">d </span>-maxdepth <span class="number">1</span>|sudo xargs rm -rf</span><br></pre></td></tr></table></figure>
+
+<h3 id="virtualbox添加LFS运行硬盘"><a href="#virtualbox添加LFS运行硬盘" class="headerlink" title="virtualbox添加LFS运行硬盘"></a>virtualbox添加LFS运行硬盘</h3><p>添加独立硬盘，完成lfs编译后，在主grub中添加lfs系统引导启动。  </p>
+<ul>
+<li>通过virtualbox创建新的linux磁盘大小<br><img src="/images/virtualbox_expand_disk.png" alt="Alt ext"></li>
+</ul>
+<p>如上图所示，新增lfs硬盘。而后，启动虚拟机。参照如下指令，对磁盘进行分区。注意将对应磁盘，替换为自己编译环境中的相应盘符。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">aurora@aurora-VirtualBox:~$</span> <span class="string">sudo</span> <span class="string">fdisk</span> <span class="string">-l</span></span><br><span class="line"><span class="string">[sudo]</span> <span class="attr">password for aurora:</span></span><br><span class="line"></span><br><span class="line"><span class="attr">Disk /dev/sda:</span> <span class="number">21.5</span> <span class="string">GB,</span> <span class="number">21474836480</span> <span class="string">bytes</span></span><br><span class="line"><span class="number">255</span> <span class="string">heads,</span> <span class="number">63</span> <span class="string">sectors/track,</span> <span class="number">2610</span> <span class="string">cylinders,</span> <span class="string">total</span> <span class="number">41943040</span> <span class="string">sectors</span></span><br><span class="line"><span class="string">Units</span> <span class="string">=</span> <span class="string">sectors</span> <span class="string">of</span> <span class="number">1</span> <span class="string">*</span> <span class="number">512</span> <span class="string">=</span> <span class="number">512</span> <span class="string">bytes</span></span><br><span class="line"><span class="string">Sector</span> <span class="string">size</span> <span class="string">(logical/physical):</span> <span class="number">512</span> <span class="string">bytes</span> <span class="string">/</span> <span class="number">512</span> <span class="string">bytes</span></span><br><span class="line"><span class="string">I/O</span> <span class="string">size</span> <span class="string">(minimum/optimal):</span> <span class="number">512</span> <span class="string">bytes</span> <span class="string">/</span> <span class="number">512</span> <span class="string">bytes</span></span><br><span class="line"><span class="attr">Disk identifier:</span> <span class="number">0x000e7c1c</span></span><br><span class="line"></span><br><span class="line">   <span class="string">Device</span> <span class="string">Boot</span>      <span class="string">Start</span>         <span class="string">End</span>      <span class="string">Blocks</span>   <span class="string">Id</span>  <span class="string">System</span></span><br><span class="line"><span class="string">/dev/sda1</span>   <span class="string">*</span>        <span class="number">2048</span>    <span class="number">37748735</span>    <span class="number">18873344</span>   <span class="number">83</span>  <span class="string">Linux</span></span><br><span class="line"><span class="string">/dev/sda2</span>        <span class="number">37750782</span>    <span class="number">41940991</span>     <span class="number">2095105</span>    <span class="number">5</span>  <span class="string">Extended</span></span><br><span class="line"><span class="string">/dev/sda5</span>        <span class="number">37750784</span>    <span class="number">41940991</span>     <span class="number">2095104</span>   <span class="number">82</span>  <span class="string">Linux</span> <span class="string">swap</span> <span class="string">/</span> <span class="string">Solaris</span></span><br><span class="line"></span><br><span class="line"><span class="attr">Disk /dev/sdb:</span> <span class="number">21.5</span> <span class="string">GB,</span> <span class="number">21474836480</span> <span class="string">bytes</span></span><br><span class="line"><span class="number">255</span> <span class="string">heads,</span> <span class="number">63</span> <span class="string">sectors/track,</span> <span class="number">2610</span> <span class="string">cylinders,</span> <span class="string">total</span> <span class="number">41943040</span> <span class="string">sectors</span></span><br><span class="line"><span class="string">Units</span> <span class="string">=</span> <span class="string">sectors</span> <span class="string">of</span> <span class="number">1</span> <span class="string">*</span> <span class="number">512</span> <span class="string">=</span> <span class="number">512</span> <span class="string">bytes</span></span><br><span class="line"><span class="string">Sector</span> <span class="string">size</span> <span class="string">(logical/physical):</span> <span class="number">512</span> <span class="string">bytes</span> <span class="string">/</span> <span class="number">512</span> <span class="string">bytes</span></span><br><span class="line"><span class="string">I/O</span> <span class="string">size</span> <span class="string">(minimum/optimal):</span> <span class="number">512</span> <span class="string">bytes</span> <span class="string">/</span> <span class="number">512</span> <span class="string">bytes</span></span><br><span class="line"><span class="attr">Disk identifier:</span> <span class="number">0x00000000</span></span><br><span class="line"></span><br><span class="line"><span class="string">Disk</span> <span class="string">/dev/sdb</span> <span class="string">doesn't</span> <span class="string">contain</span> <span class="string">a</span> <span class="string">valid</span> <span class="string">partition</span> <span class="string">table</span></span><br><span class="line"></span><br><span class="line"><span class="string">aurora@aurora-VirtualBox:~$</span> <span class="string">sudo</span> <span class="string">fdisk</span> <span class="string">/dev/sdb</span></span><br><span class="line"><span class="string">Device</span> <span class="string">contains</span> <span class="string">neither</span> <span class="string">a</span> <span class="string">valid</span> <span class="string">DOS</span> <span class="string">partition</span> <span class="string">table,</span> <span class="string">nor</span> <span class="string">Sun,</span> <span class="string">SGI</span> <span class="string">or</span> <span class="string">OSF</span> <span class="string">disklabel</span></span><br><span class="line"><span class="string">Building</span> <span class="string">a</span> <span class="string">new</span> <span class="string">DOS</span> <span class="string">disklabel</span> <span class="string">with</span> <span class="string">disk</span> <span class="string">identifier</span> <span class="number">0x375750ff</span><span class="string">.</span></span><br><span class="line"><span class="string">Changes</span> <span class="string">will</span> <span class="string">remain</span> <span class="string">in</span> <span class="string">memory</span> <span class="string">only,</span> <span class="string">until</span> <span class="string">you</span> <span class="string">decide</span> <span class="string">to</span> <span class="string">write</span> <span class="string">them.</span></span><br><span class="line"><span class="string">After</span> <span class="string">that,</span> <span class="string">of</span> <span class="string">course,</span> <span class="string">the</span> <span class="string">previous</span> <span class="string">content</span> <span class="string">won't</span> <span class="string">be</span> <span class="string">recoverable.</span></span><br><span class="line"></span><br><span class="line"><span class="attr">Warning:</span> <span class="string">invalid</span> <span class="string">flag</span> <span class="number">0x0000</span> <span class="string">of</span> <span class="string">partition</span> <span class="string">table</span> <span class="number">4</span> <span class="string">will</span> <span class="string">be</span> <span class="string">corrected</span> <span class="string">by</span> <span class="string">w(rite)</span></span><br><span class="line"></span><br><span class="line"><span class="string">Command</span> <span class="string">(m</span> <span class="string">for</span> <span class="string">help):</span> <span class="string">m</span></span><br><span class="line"><span class="string">Command</span> <span class="string">action</span></span><br><span class="line">   <span class="string">a</span>   <span class="string">toggle</span> <span class="string">a</span> <span class="string">bootable</span> <span class="string">flag</span></span><br><span class="line">   <span class="string">b</span>   <span class="string">edit</span> <span class="string">bsd</span> <span class="string">disklabel</span></span><br><span class="line">   <span class="string">c</span>   <span class="string">toggle</span> <span class="string">the</span> <span class="string">dos</span> <span class="string">compatibility</span> <span class="string">flag</span></span><br><span class="line">   <span class="string">d</span>   <span class="string">delete</span> <span class="string">a</span> <span class="string">partition</span></span><br><span class="line">   <span class="string">l</span>   <span class="string">list</span> <span class="string">known</span> <span class="string">partition</span> <span class="string">types</span></span><br><span class="line">   <span class="string">m</span>   <span class="string">print</span> <span class="string">this</span> <span class="string">menu</span></span><br><span class="line">   <span class="string">n</span>   <span class="string">add</span> <span class="string">a</span> <span class="string">new</span> <span class="string">partition</span></span><br><span class="line">   <span class="string">o</span>   <span class="string">create</span> <span class="string">a</span> <span class="string">new</span> <span class="string">empty</span> <span class="string">DOS</span> <span class="string">partition</span> <span class="string">table</span></span><br><span class="line">   <span class="string">p</span>   <span class="string">print</span> <span class="string">the</span> <span class="string">partition</span> <span class="string">table</span></span><br><span class="line">   <span class="string">q</span>   <span class="string">quit</span> <span class="string">without</span> <span class="string">saving</span> <span class="string">changes</span></span><br><span class="line">   <span class="string">s</span>   <span class="string">create</span> <span class="string">a</span> <span class="string">new</span> <span class="string">empty</span> <span class="string">Sun</span> <span class="string">disklabel</span></span><br><span class="line">   <span class="string">t</span>   <span class="string">change</span> <span class="string">a</span> <span class="string">partition's</span> <span class="string">system</span> <span class="string">id</span></span><br><span class="line">   <span class="string">u</span>   <span class="string">change</span> <span class="string">display/entry</span> <span class="string">units</span></span><br><span class="line">   <span class="string">v</span>   <span class="string">verify</span> <span class="string">the</span> <span class="string">partition</span> <span class="string">table</span></span><br><span class="line">   <span class="string">w</span>   <span class="string">write</span> <span class="string">table</span> <span class="string">to</span> <span class="string">disk</span> <span class="string">and</span> <span class="string">exit</span></span><br><span class="line">   <span class="string">x</span>   <span class="string">extra</span> <span class="string">functionality</span> <span class="string">(experts</span> <span class="string">only)</span></span><br><span class="line"></span><br><span class="line"><span class="string">Command</span> <span class="string">(m</span> <span class="string">for</span> <span class="string">help):</span> <span class="string">n</span></span><br><span class="line"><span class="attr">Partition type:</span></span><br><span class="line">   <span class="string">p</span>   <span class="string">primary</span> <span class="string">(0</span> <span class="string">primary,</span> <span class="number">0</span> <span class="string">extended,</span> <span class="number">4</span> <span class="string">free)</span></span><br><span class="line">   <span class="string">e</span>   <span class="string">extended</span></span><br><span class="line"><span class="string">Select</span> <span class="string">(default</span> <span class="string">p):</span> <span class="string">p</span></span><br><span class="line"><span class="string">Partition</span> <span class="string">number</span> <span class="string">(1-4,</span> <span class="string">default</span> <span class="number">1</span><span class="string">):</span> <span class="number">1</span></span><br><span class="line"><span class="string">First</span> <span class="string">sector</span> <span class="string">(2048-41943039,</span> <span class="string">default</span> <span class="number">2048</span><span class="string">):</span></span><br><span class="line"><span class="string">Using</span> <span class="string">default</span> <span class="string">value</span> <span class="number">2048</span></span><br><span class="line"><span class="string">Last</span> <span class="string">sector,</span> <span class="string">+sectors</span> <span class="string">or</span> <span class="string">+size&#123;K,M,G&#125;</span> <span class="string">(2048-41943039,</span> <span class="string">default</span> <span class="number">41943039</span><span class="string">):</span></span><br><span class="line"><span class="string">Using</span> <span class="string">default</span> <span class="string">value</span> <span class="number">41943039</span></span><br><span class="line"></span><br><span class="line"><span class="string">Command</span> <span class="string">(m</span> <span class="string">for</span> <span class="string">help):</span> <span class="string">p</span></span><br><span class="line"></span><br><span class="line"><span class="attr">Disk /dev/sdb:</span> <span class="number">21.5</span> <span class="string">GB,</span> <span class="number">21474836480</span> <span class="string">bytes</span></span><br><span class="line"><span class="number">255</span> <span class="string">heads,</span> <span class="number">63</span> <span class="string">sectors/track,</span> <span class="number">2610</span> <span class="string">cylinders,</span> <span class="string">total</span> <span class="number">41943040</span> <span class="string">sectors</span></span><br><span class="line"><span class="string">Units</span> <span class="string">=</span> <span class="string">sectors</span> <span class="string">of</span> <span class="number">1</span> <span class="string">*</span> <span class="number">512</span> <span class="string">=</span> <span class="number">512</span> <span class="string">bytes</span></span><br><span class="line"><span class="string">Sector</span> <span class="string">size</span> <span class="string">(logical/physical):</span> <span class="number">512</span> <span class="string">bytes</span> <span class="string">/</span> <span class="number">512</span> <span class="string">bytes</span></span><br><span class="line"><span class="string">I/O</span> <span class="string">size</span> <span class="string">(minimum/optimal):</span> <span class="number">512</span> <span class="string">bytes</span> <span class="string">/</span> <span class="number">512</span> <span class="string">bytes</span></span><br><span class="line"><span class="attr">Disk identifier:</span> <span class="number">0x375750ff</span></span><br><span class="line"></span><br><span class="line">   <span class="string">Device</span> <span class="string">Boot</span>      <span class="string">Start</span>         <span class="string">End</span>      <span class="string">Blocks</span>   <span class="string">Id</span>  <span class="string">System</span></span><br><span class="line"><span class="string">/dev/sdb1</span>            <span class="number">2048</span>    <span class="number">41943039</span>    <span class="number">20970496</span>   <span class="number">83</span>  <span class="string">Linux</span></span><br><span class="line"></span><br><span class="line"><span class="string">Command</span> <span class="string">(m</span> <span class="string">for</span> <span class="string">help):</span> <span class="string">w</span></span><br><span class="line"><span class="string">The</span> <span class="string">partition</span> <span class="string">table</span> <span class="string">has</span> <span class="string">been</span> <span class="string">altered!</span></span><br><span class="line"></span><br><span class="line"><span class="string">Calling</span> <span class="string">ioctl()</span> <span class="string">to</span> <span class="string">re-read</span> <span class="string">partition</span> <span class="string">table.</span></span><br><span class="line"><span class="string">Syncing</span> <span class="string">disks.</span></span><br><span class="line"><span class="string">aurora@aurora-VirtualBox:~$</span> <span class="string">df</span> <span class="string">-h</span></span><br><span class="line"><span class="string">Filesystem</span>      <span class="string">Size</span>  <span class="string">Used</span> <span class="string">Avail</span> <span class="string">Use%</span> <span class="string">Mounted</span> <span class="string">on</span></span><br><span class="line"><span class="string">/dev/sda1</span>        <span class="string">18G</span>  <span class="number">3.</span><span class="string">6G</span>   <span class="string">14G</span>  <span class="number">22</span><span class="string">%</span> <span class="string">/</span></span><br><span class="line"><span class="string">none</span>            <span class="number">4.</span><span class="string">0K</span>     <span class="number">0</span>  <span class="number">4.</span><span class="string">0K</span>   <span class="number">0</span><span class="string">%</span> <span class="string">/sys/fs/cgroup</span></span><br><span class="line"><span class="string">udev</span>            <span class="string">991M</span>  <span class="number">4.</span><span class="string">0K</span>  <span class="string">991M</span>   <span class="number">1</span><span class="string">%</span> <span class="string">/dev</span></span><br><span class="line"><span class="string">tmpfs</span>           <span class="string">201M</span>  <span class="string">952K</span>  <span class="string">200M</span>   <span class="number">1</span><span class="string">%</span> <span class="string">/run</span></span><br><span class="line"><span class="string">none</span>            <span class="number">5.</span><span class="string">0M</span>     <span class="number">0</span>  <span class="number">5.</span><span class="string">0M</span>   <span class="number">0</span><span class="string">%</span> <span class="string">/run/lock</span></span><br><span class="line"><span class="string">none</span>           <span class="string">1001M</span>   <span class="string">76K</span> <span class="string">1001M</span>   <span class="number">1</span><span class="string">%</span> <span class="string">/run/shm</span></span><br><span class="line"><span class="string">none</span>            <span class="string">100M</span>   <span class="string">28K</span>  <span class="string">100M</span>   <span class="number">1</span><span class="string">%</span> <span class="string">/run/user</span></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="创建ext4文件分区"><a href="#创建ext4文件分区" class="headerlink" title="创建ext4文件分区"></a>创建ext4文件分区</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">aurora@aurora-VirtualBox:~$ sudo mkfs -v -t ext4 /dev/sdb1</span><br><span class="line">mke2fs 1.42.9 (4-Feb-2014)</span><br><span class="line">fs_types <span class="keyword">for</span> mke2fs.conf resolution: <span class="string">'ext4'</span></span><br><span class="line">Filesystem label=</span><br><span class="line">OS type: Linux</span><br><span class="line">Block <span class="attribute">size</span>=4096 (<span class="attribute">log</span>=2)</span><br><span class="line">Fragment <span class="attribute">size</span>=4096 (<span class="attribute">log</span>=2)</span><br><span class="line"><span class="attribute">Stride</span>=0 blocks, Stripe <span class="attribute">width</span>=0 blocks</span><br><span class="line">1310720 inodes, 5242624 blocks</span><br><span class="line">262131 blocks (5.00%) reserved <span class="keyword">for</span> the super user</span><br><span class="line">First data <span class="attribute">block</span>=0</span><br><span class="line">Maximum filesystem <span class="attribute">blocks</span>=4294967296</span><br><span class="line">160 block groups</span><br><span class="line">32768 blocks per group, 32768 fragments per group</span><br><span class="line">8192 inodes per group</span><br><span class="line">Superblock backups stored on blocks:</span><br><span class="line">    32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632, 2654208,</span><br><span class="line">    4096000</span><br><span class="line"></span><br><span class="line">Allocating<span class="built_in"> group </span>tables: done</span><br><span class="line">Writing inode tables: done</span><br><span class="line">Creating journal (32768 blocks): done</span><br><span class="line">Writing superblocks <span class="keyword">and</span> filesystem<span class="built_in"> accounting </span>information: done</span><br></pre></td></tr></table></figure>
+<h3 id="LFS7-7-各章编译要点"><a href="#LFS7-7-各章编译要点" class="headerlink" title="LFS7.7 各章编译要点"></a>LFS7.7 各章编译要点</h3><p>###chapter 5 编译<br><strong>5.22. Gawk-4.1.1</strong>  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+<p>提示出错，lfs中也有说明，并不是一定要运行make test命令。通过google搜索，见到如下回复：</p>
+<blockquote>
+<p>Chapter 5 isn’t a complete OS. It’s a bootstrap system, so it’s not going to be built the same, nor pass tests normally. As long as the GCC and binutils sanity checks are okay, you’re fine.<br>忽略此处，一样可以完成编译。没有问题。<br>编译chapter 5完成后，若磁盘空间足够，则无需剔除相关程序中的调试信息。<br>备份本章编译工具。chapter 6执行后，可能会更改相关工具。若chapter相关工具编译失败，可重新进行编译。节约时间。</p>
+</blockquote>
+<h3 id="chapter-6-编译"><a href="#chapter-6-编译" class="headerlink" title="chapter 6 编译"></a>chapter 6 编译</h3><p><strong>6.9. Glibc-2.21</strong>  </p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">make check</span></span><br></pre></td></tr></table></figure>
+
+<p>出现以下错误：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">scripts/merge-test-results.sh -t /sources/glibc-build/ subdir-tests.sum \</span><br><span class="line">  . argp assert catgets conform crypt csu ctype <span class="builtin-name">debug</span> dirent dlfcn elf gmon gnulib grp gshadow hesiod iconv iconvdata inet intl io libidn libio locale localedata login malloc<span class="built_in"> manual </span>math misc nis nptl nptl_db nscd nss po posix pwd resolv<span class="built_in"> resource </span>rt setjmp shadow signal socket stdio-common stdlib streams string sunrpc sysvipc termios time timezone wcsmbs wctype \</span><br><span class="line">  &gt; /sources/glibc-build/tests.sum</span><br><span class="line">FAIL: nptl/tst-cond20</span><br><span class="line">FAIL: nptl/tst-cond21</span><br><span class="line">FAIL: nptl/tst-cond24</span><br><span class="line">FAIL: posix/tst-getaddrinfo4</span><br><span class="line">FAIL: posix/tst-getaddrinfo5</span><br><span class="line">Summary of test results:</span><br><span class="line">      5 FAIL</span><br><span class="line">   2180 PASS</span><br><span class="line">    199 XFAIL</span><br><span class="line">      3 XPASS</span><br><span class="line">Makefile:321: recipe <span class="keyword">for</span> target <span class="string">'tests'</span> failed</span><br><span class="line">make[1]: *** [tests] <span class="builtin-name">Error</span> 1</span><br><span class="line">make[1]: Leaving directory <span class="string">'/sources/glibc-2.21'</span></span><br><span class="line">Makefile:9: recipe <span class="keyword">for</span> target <span class="string">'check'</span> failed</span><br><span class="line">make: *** [check] <span class="builtin-name">Error</span> 2</span><br></pre></td></tr></table></figure>
+<p>允许，继续进行下一步</p>
+<p><strong>6.17. GCC-4.9.2</strong></p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">make -k check</span></span><br></pre></td></tr></table></figure>
+<p>时间很长，做好心理准备。<br>编译完成后，使用../gcc-4.9.2/contrib/test_summary检测编译输出log。<br><a href="http://gcc.gnu.org/ml/gcc-testresults/" target="_blank" rel="noopener">搜索相应平台版本编译生成的log日志</a><br>选择自己的宿主环境，对照编译log。<br>以下为我自己的log输出：</p>
+<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line">root:/sources/gcc-<span class="keyword">build</span># ../gcc<span class="number">-4.9</span><span class="number">.2</span>/contrib/test_summary</span><br><span class="line">cat &lt;&lt;<span class="string">'EOF'</span> |</span><br><span class="line">LAST_UPDATED: Obtained <span class="keyword">from</span> SVN: tags/gcc_4_9_2_release revision <span class="number">216910</span></span><br><span class="line"></span><br><span class="line">Native configuration <span class="keyword">is</span> x86_64-<span class="keyword">unknown</span>-linux-gnu</span><br><span class="line"></span><br><span class="line">        === g++ tests ===</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Running target unix</span><br><span class="line">FAIL: g++.dg/asan/asan_test.C  -O2  AddressSanitizer_HugeMallocTest Ident((char*)malloc(size))[<span class="number">-1</span>] = <span class="number">0</span> output pattern test</span><br><span class="line">XPASS: g++.dg/tls/thread_local-order2.C -std=c++<span class="number">11</span> execution test</span><br><span class="line">XPASS: g++.dg/tls/thread_local-order2.C -std=c++<span class="number">1</span>y execution test</span><br><span class="line"></span><br><span class="line">        === g++ Summary ===</span><br><span class="line"></span><br><span class="line"># of expected passes        <span class="number">88500</span></span><br><span class="line"># of unexpected failures    <span class="number">1</span></span><br><span class="line"># of unexpected successes   <span class="number">2</span></span><br><span class="line"># of expected failures      <span class="number">443</span></span><br><span class="line"># of unsupported tests      <span class="number">3058</span></span><br><span class="line">/sources/gcc-<span class="keyword">build</span>/gcc/testsuite/g++/../../xg++  version <span class="number">4.9</span><span class="number">.2</span> (GCC)</span><br><span class="line"></span><br><span class="line">        === gcc tests ===</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Running target unix</span><br><span class="line"></span><br><span class="line">        === gcc Summary ===</span><br><span class="line"></span><br><span class="line"># of expected passes        <span class="number">106352</span></span><br><span class="line"># of expected failures      <span class="number">252</span></span><br><span class="line"># of unsupported tests      <span class="number">1422</span></span><br><span class="line">/sources/gcc-<span class="keyword">build</span>/gcc/xgcc  version <span class="number">4.9</span><span class="number">.2</span> (GCC)</span><br><span class="line"></span><br><span class="line">        === libatomic tests ===</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Running target unix</span><br><span class="line"></span><br><span class="line">        === libatomic Summary ===</span><br><span class="line"></span><br><span class="line"># of expected passes        <span class="number">54</span></span><br><span class="line">        === libgomp tests ===</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Running target unix</span><br><span class="line"></span><br><span class="line">        === libgomp Summary ===</span><br><span class="line"></span><br><span class="line"># of expected passes        <span class="number">693</span></span><br><span class="line">        === libitm tests ===</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Running target unix</span><br><span class="line"></span><br><span class="line">        === libitm Summary ===</span><br><span class="line"></span><br><span class="line"># of expected passes        <span class="number">26</span></span><br><span class="line"># of expected failures      <span class="number">3</span></span><br><span class="line"># of unsupported tests      <span class="number">1</span></span><br><span class="line">        === libstdc++ tests ===</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Running target unix</span><br><span class="line"></span><br><span class="line">        === libstdc++ Summary ===</span><br><span class="line"></span><br><span class="line"># of expected passes        <span class="number">9925</span></span><br><span class="line"># of expected failures      <span class="number">41</span></span><br><span class="line"># of unsupported tests      <span class="number">233</span></span><br><span class="line"></span><br><span class="line">Compiler version: <span class="number">4.9</span><span class="number">.2</span> (GCC)</span><br><span class="line">Platform: x86_64-<span class="keyword">unknown</span>-linux-gnu</span><br><span class="line">configure flags: --prefix=/usr --enable-languages=c,c++ --disable-multilib --disable-bootstrap --<span class="keyword">with</span>-<span class="keyword">system</span>-zlib</span><br><span class="line">EOF</span><br><span class="line">Mail -s <span class="string">"Results for 4.9.2 (GCC) testsuite on x86_64-unknown-linux-gnu"</span> gcc-testresults@gcc.gnu.org &amp;&amp;</span><br><span class="line">mv /sources/gcc-<span class="keyword">build</span>/./gcc/testsuite/g++/g++.<span class="built_in">sum</span> /sources/gcc-<span class="keyword">build</span>/./gcc/testsuite/g++/g++.<span class="built_in">sum</span>.sent &amp;&amp;</span><br><span class="line">mv /sources/gcc-<span class="keyword">build</span>/./gcc/testsuite/gcc/gcc.<span class="built_in">sum</span> /sources/gcc-<span class="keyword">build</span>/./gcc/testsuite/gcc/gcc.<span class="built_in">sum</span>.sent &amp;&amp;</span><br><span class="line">mv /sources/gcc-<span class="keyword">build</span>/./x86_64-<span class="keyword">unknown</span>-linux-gnu/libatomic/testsuite/libatomic.<span class="built_in">sum</span> /sources/gcc-<span class="keyword">build</span>/./x86_64-<span class="keyword">unknown</span>-linux-gnu/libatomic/testsuite/libatomic.<span class="built_in">sum</span>.sent &amp;&amp;</span><br><span class="line">mv /sources/gcc-<span class="keyword">build</span>/./x86_64-<span class="keyword">unknown</span>-linux-gnu/libgomp/testsuite/libgomp.<span class="built_in">sum</span> /sources/gcc-<span class="keyword">build</span>/./x86_64-<span class="keyword">unknown</span>-linux-gnu/libgomp/testsuite/libgomp.<span class="built_in">sum</span>.sent &amp;&amp;</span><br><span class="line">mv /sources/gcc-<span class="keyword">build</span>/./x86_64-<span class="keyword">unknown</span>-linux-gnu/libitm/testsuite/libitm.<span class="built_in">sum</span> /sources/gcc-<span class="keyword">build</span>/./x86_64-<span class="keyword">unknown</span>-linux-gnu/libitm/testsuite/libitm.<span class="built_in">sum</span>.sent &amp;&amp;</span><br><span class="line">mv /sources/gcc-<span class="keyword">build</span>/./x86_64-<span class="keyword">unknown</span>-linux-gnu/libstdc++-v3/testsuite/libstdc++.<span class="built_in">sum</span> /sources/gcc-<span class="keyword">build</span>/./x86_64-<span class="keyword">unknown</span>-linux-gnu/libstdc++-v3/testsuite/libstdc++.<span class="built_in">sum</span>.sent &amp;&amp;</span><br><span class="line">mv /sources/gcc-<span class="keyword">build</span>/./gcc/testsuite/g++/g++.<span class="built_in">log</span> /sources/gcc-<span class="keyword">build</span>/./gcc/testsuite/g++/g++.<span class="built_in">log</span>.sent &amp;&amp;</span><br><span class="line">mv /sources/gcc-<span class="keyword">build</span>/./gcc/testsuite/gcc/gcc.<span class="built_in">log</span> /sources/gcc-<span class="keyword">build</span>/./gcc/testsuite/gcc/gcc.<span class="built_in">log</span>.sent &amp;&amp;</span><br><span class="line">mv /sources/gcc-<span class="keyword">build</span>/./x86_64-<span class="keyword">unknown</span>-linux-gnu/libatomic/testsuite/libatomic.<span class="built_in">log</span> /sources/gcc-<span class="keyword">build</span>/./x86_64-<span class="keyword">unknown</span>-linux-gnu/libatomic/testsuite/libatomic.<span class="built_in">log</span>.sent &amp;&amp;</span><br><span class="line">mv /sources/gcc-<span class="keyword">build</span>/./x86_64-<span class="keyword">unknown</span>-linux-gnu/libgomp/testsuite/libgomp.<span class="built_in">log</span> /sources/gcc-<span class="keyword">build</span>/./x86_64-<span class="keyword">unknown</span>-linux-gnu/libgomp/testsuite/libgomp.<span class="built_in">log</span>.sent &amp;&amp;</span><br><span class="line">mv /sources/gcc-<span class="keyword">build</span>/./x86_64-<span class="keyword">unknown</span>-linux-gnu/libitm/testsuite/libitm.<span class="built_in">log</span> /sources/gcc-<span class="keyword">build</span>/./x86_64-<span class="keyword">unknown</span>-linux-gnu/libitm/testsuite/libitm.<span class="built_in">log</span>.sent &amp;&amp;</span><br><span class="line">mv /sources/gcc-<span class="keyword">build</span>/./x86_64-<span class="keyword">unknown</span>-linux-gnu/libstdc++-v3/testsuite/libstdc++.<span class="built_in">log</span> /sources/gcc-<span class="keyword">build</span>/./x86_64-<span class="keyword">unknown</span>-linux-gnu/libstdc++-v3/testsuite/libstdc++.<span class="built_in">log</span>.sent &amp;&amp;</span><br><span class="line"><span class="literal">true</span></span><br><span class="line">root:/sources/gcc-<span class="keyword">build</span>#</span><br></pre></td></tr></table></figure>
+<p><strong>6.38. Libtool-2.4.6</strong>  </p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">make check</span></span><br></pre></td></tr></table></figure>
+<p>提示报错，忽略继续进行。<br>编译依旧lfs成功。log如下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## ------------- ##</span></span><br><span class="line"><span class="comment">## Test results. ##</span></span><br><span class="line"><span class="comment">## ------------- ##</span></span><br><span class="line"></span><br><span class="line"><span class="attr">ERROR:</span> <span class="number">139</span> <span class="string">tests</span> <span class="string">were</span> <span class="string">run,</span></span><br><span class="line"><span class="number">64</span> <span class="string">failed</span> <span class="string">(59</span> <span class="string">expected</span> <span class="string">failures).</span></span><br><span class="line"><span class="number">31</span> <span class="string">tests</span> <span class="string">were</span> <span class="string">skipped.</span></span><br><span class="line"><span class="comment">## -------------------------- ##</span></span><br><span class="line"><span class="comment">## testsuite.log was created. ##</span></span><br><span class="line"><span class="comment">## -------------------------- ##</span></span><br><span class="line"></span><br><span class="line"><span class="string">Please</span> <span class="string">send</span> <span class="string">`tests/testsuite.log'</span> <span class="attr">and all information you think might help:</span></span><br><span class="line"></span><br><span class="line">   <span class="attr">To:</span> <span class="string">&lt;bug-libtool@gnu.org&gt;</span></span><br><span class="line">   <span class="attr">Subject:</span> <span class="string">[GNU</span> <span class="string">Libtool</span> <span class="number">2.4</span><span class="number">.6</span><span class="string">]</span> <span class="attr">testsuite:</span> <span class="number">123</span> <span class="number">124</span> <span class="number">125</span> <span class="number">126</span> <span class="number">130</span> <span class="string">failed</span></span><br><span class="line"></span><br><span class="line"><span class="string">You</span> <span class="string">may</span> <span class="string">investigate</span> <span class="string">any</span> <span class="string">problem</span> <span class="string">if</span> <span class="string">you</span> <span class="string">feel</span> <span class="string">able</span> <span class="string">to</span> <span class="string">do</span> <span class="string">so,</span> <span class="string">in</span> <span class="string">which</span></span><br><span class="line"><span class="string">case</span> <span class="string">the</span> <span class="string">test</span> <span class="string">suite</span> <span class="string">provides</span> <span class="string">a</span> <span class="string">good</span> <span class="string">starting</span> <span class="string">point.</span>  <span class="string">Its</span> <span class="string">output</span> <span class="string">may</span></span><br><span class="line"><span class="string">be</span> <span class="string">found</span> <span class="string">below</span> <span class="string">`tests/testsuite.dir'.</span></span><br><span class="line"></span><br><span class="line"><span class="attr">Makefile:2459:</span> <span class="string">recipe</span> <span class="string">for</span> <span class="string">target</span> <span class="string">'check-local'</span> <span class="string">failed</span></span><br><span class="line"><span class="string">make[3]:</span> <span class="string">***</span> <span class="string">[check-local]</span> <span class="string">Error</span> <span class="number">1</span></span><br><span class="line"><span class="string">make[3]:</span> <span class="string">Leaving</span> <span class="string">directory</span> <span class="string">'/sources/libtool-2.4.6'</span></span><br><span class="line"><span class="attr">Makefile:1897:</span> <span class="string">recipe</span> <span class="string">for</span> <span class="string">target</span> <span class="string">'check-am'</span> <span class="string">failed</span></span><br><span class="line"><span class="string">make[2]:</span> <span class="string">***</span> <span class="string">[check-am]</span> <span class="string">Error</span> <span class="number">2</span></span><br><span class="line"><span class="string">make[2]:</span> <span class="string">Leaving</span> <span class="string">directory</span> <span class="string">'/sources/libtool-2.4.6'</span></span><br><span class="line"><span class="attr">Makefile:1606:</span> <span class="string">recipe</span> <span class="string">for</span> <span class="string">target</span> <span class="string">'check-recursive'</span> <span class="string">failed</span></span><br><span class="line"><span class="string">make[1]:</span> <span class="string">***</span> <span class="string">[check-recursive]</span> <span class="string">Error</span> <span class="number">1</span></span><br><span class="line"><span class="string">make[1]:</span> <span class="string">Leaving</span> <span class="string">directory</span> <span class="string">'/sources/libtool-2.4.6'</span></span><br><span class="line"><span class="attr">Makefile:1899:</span> <span class="string">recipe</span> <span class="string">for</span> <span class="string">target</span> <span class="string">'check'</span> <span class="string">failed</span></span><br><span class="line"><span class="attr">make:</span> <span class="string">***</span> <span class="string">[check]</span> <span class="string">Error</span> <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<p>lfs官方提示：<br>Five tests are known to fail in the LFS build envronment due to a circular dependency, but all tests pass if rechecked after automake is installed.</p>
+<p><strong>6.49. Gettext-0.19.4</strong><br>编译时出现错误，现在暂时忽略。<br>编译lfs依旧成功。  </p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">make[6]: Entering directory <span class="string">'/sources/gettext-0.19.4/gettext-tools/tests'</span></span><br><span class="line">make[6]: <span class="literal">Nothing</span> <span class="keyword">to</span> be done <span class="keyword">for</span> <span class="string">'all'</span>.</span><br><span class="line">make[6]: Leaving directory <span class="string">'/sources/gettext-0.19.4/gettext-tools/tests'</span></span><br><span class="line">============================================================================</span><br><span class="line">Testsuite summary <span class="keyword">for</span> gettext-tools 0.19.4</span><br><span class="line">============================================================================</span><br><span class="line"><span class="comment"># TOTAL: 397</span></span><br><span class="line"><span class="comment"># PASS:  378</span></span><br><span class="line"><span class="comment"># SKIP:  18</span></span><br><span class="line"><span class="comment"># XFAIL: 0</span></span><br><span class="line"><span class="comment"># FAIL:  1</span></span><br><span class="line"><span class="comment"># XPASS: 0</span></span><br><span class="line"><span class="comment"># ERROR: 0</span></span><br><span class="line">============================================================================</span><br><span class="line">See tests/test-suite.log</span><br><span class="line">Please report <span class="keyword">to</span> bug-gnu-gettext@gnu.org</span><br><span class="line">============================================================================</span><br><span class="line">Makefile:2221: recipe <span class="keyword">for</span> target <span class="string">'test-suite.log'</span> failed</span><br><span class="line">make[5]: *** [test-suite.log] <span class="builtin-name">Error</span> 1</span><br><span class="line">make[5]: Leaving directory <span class="string">'/sources/gettext-0.19.4/gettext-tools/tests'</span></span><br><span class="line">Makefile:2327: recipe <span class="keyword">for</span> target <span class="string">'check-TESTS'</span> failed</span><br><span class="line">make[4]: *** [check-TESTS] <span class="builtin-name">Error</span> 2</span><br><span class="line">make[4]: Leaving directory <span class="string">'/sources/gettext-0.19.4/gettext-tools/tests'</span></span><br><span class="line">Makefile:5172: recipe <span class="keyword">for</span> target <span class="string">'check-am'</span> failed</span><br><span class="line">make[3]: *** [check-am] <span class="builtin-name">Error</span> 2</span><br><span class="line">make[3]: Leaving directory <span class="string">'/sources/gettext-0.19.4/gettext-tools/tests'</span></span><br><span class="line">Makefile:1721: recipe <span class="keyword">for</span> target <span class="string">'check-recursive'</span> failed</span><br><span class="line">make[2]: *** [check-recursive] <span class="builtin-name">Error</span> 1</span><br><span class="line">make[2]: Leaving directory <span class="string">'/sources/gettext-0.19.4/gettext-tools'</span></span><br><span class="line">Makefile:369: recipe <span class="keyword">for</span> target <span class="string">'check-recursive'</span> failed</span><br><span class="line">make[1]: *** [check-recursive] <span class="builtin-name">Error</span> 1</span><br><span class="line">make[1]: Leaving directory <span class="string">'/sources/gettext-0.19.4'</span></span><br><span class="line">Makefile:661: recipe <span class="keyword">for</span> target <span class="string">'check'</span> failed</span><br><span class="line">make: *** [check] <span class="builtin-name">Error</span> 2</span><br></pre></td></tr></table></figure>
+<p><strong>chapter 7.1</strong>  </p>
+<p>针对于chapter 6章，离开编译环境（重启，或退出终端），重新进入编译环境，参照lfs，执行6.2.2和6.2.3相关命令。</p>
+<blockquote>
+<p>If the virtual kernel file systems have been unmounted, either manually or through a reboot, ensure that the virtual kernel file systems are mounted when reentering the chroot. This process was explained in Section 6.2.2, “Mounting and Populating /dev” and Section 6.2.3, “Mounting Virtual Kernel File Systems”.</p>
+</blockquote>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mount -v --bind /dev <span class="variable">$LFS</span>/dev</span><br><span class="line">mount -vt devpts devpts <span class="variable">$LFS</span>/dev/pts -o gid=<span class="number">5</span>,mode=<span class="number">620</span></span><br><span class="line">mount -vt proc proc <span class="variable">$LFS</span>/proc</span><br><span class="line">mount -vt sysfs sysfs <span class="variable">$LFS</span>/sys</span><br><span class="line">mount -vt tmpfs tmpfs <span class="variable">$LFS</span>/run</span><br><span class="line">chroot <span class="string">"$LFS"</span> /tools/bin/env -i \</span><br><span class="line">    HOME=<span class="regexp">/root                  \</span></span><br><span class="line"><span class="regexp">    TERM="$TERM"                \</span></span><br><span class="line"><span class="regexp">    PS1='\u:\w\$ '              \</span></span><br><span class="line"><span class="regexp">    PATH=/bin</span><span class="symbol">:/usr/bin</span><span class="symbol">:/sbin</span><span class="symbol">:/usr/sbin</span><span class="symbol">:/tools/bin</span> \</span><br><span class="line">    /tools/bin/bash --login +h</span><br></pre></td></tr></table></figure>
+
+<p>进入chapter 7章，离开编译环境（重启，或退出终端），重新进入编译环境，执行以下命令</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mount -v --bind /dev <span class="variable">$LFS</span>/dev</span><br><span class="line">mount -vt devpts devpts <span class="variable">$LFS</span>/dev/pts -o <span class="attribute">gid</span>=5,mode=620</span><br><span class="line">mount -vt proc proc <span class="variable">$LFS</span>/proc</span><br><span class="line">mount -vt sysfs sysfs <span class="variable">$LFS</span>/sys</span><br><span class="line">mount -vt tmpfs tmpfs <span class="variable">$LFS</span>/run</span><br><span class="line">chroot <span class="string">"<span class="variable">$LFS</span>"</span> /usr/bin/env -i              \</span><br><span class="line">    <span class="attribute">HOME</span>=/root <span class="attribute">TERM</span>=<span class="string">"<span class="variable">$TERM</span>"</span> <span class="attribute">PS1</span>=<span class="string">'\u:\w\$ '</span> \</span><br><span class="line">    <span class="attribute">PATH</span>=/bin:/usr/bin:/sbin:/usr/sbin     \</span><br><span class="line">    /bin/bash --login</span><br></pre></td></tr></table></figure>
+
+<p>设置本地变量，统一设置为en_US.utf8,以下命令测试，是否支持。</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">LC_ALL</span>=en_US.utf8 locale language</span><br><span class="line"><span class="attribute">LC_ALL</span>=en_US.utf8 locale charmap</span><br><span class="line"><span class="attribute">LC_ALL</span>=en_US.utf8 locale int_curr_symbol</span><br><span class="line"><span class="attribute">LC_ALL</span>=en_US.utf8 locale int_prefix</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">root:/etc/sysconfig# <span class="attribute">LC_ALL</span>=en_US.utf8 locale language</span><br><span class="line">English</span><br><span class="line">root:/etc/sysconfig# <span class="attribute">LC_ALL</span>=en_US.utf8 locale charmap</span><br><span class="line">UTF-8</span><br><span class="line">root:/etc/sysconfig# <span class="attribute">LC_ALL</span>=en_US.utf8 locale int_curr_symbol</span><br><span class="line">USD</span><br><span class="line">root:/etc/sysconfig# <span class="attribute">LC_ALL</span>=en_US.utf8 locale int_prefix</span><br><span class="line">1</span><br><span class="line"></span><br><span class="line">之后创建配置文件</span><br><span class="line"></span><br><span class="line">cat &gt; /etc<span class="built_in">/profile </span>&lt;&lt; <span class="string">"EOF"</span></span><br><span class="line"><span class="comment"># Begin /etc/profile</span></span><br><span class="line"></span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">LANG</span>=en_US.utf8</span><br><span class="line"></span><br><span class="line"><span class="comment"># End /etc/profile</span></span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+
+<p><strong>chapter 8</strong><br>安装grub，导致覆盖了ubuntu原来的grub配置，可参照如下链接步骤恢复：<br><a href="http://blog.csdn.net/liangxanhai/article/details/7654478" target="_blank" rel="noopener">覆盖grub，恢复原来的系统</a></p>
+<h2 id="其他博主的LFS编译总结"><a href="#其他博主的LFS编译总结" class="headerlink" title="其他博主的LFS编译总结"></a>其他博主的LFS编译总结</h2><p><a href="http://www.cnblogs.com/champ/tag/LFS/" target="_blank" rel="noopener">不错的LFS编译总结</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/06/30/OpenWrt-%E6%B7%BB%E5%8A%A0-RTC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/wln.jpg">
+      <meta itemprop="name" content="Darkknight">
+      <meta itemprop="description" content="嵌入式、openwrt、c、前端">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="善能">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2015/06/30/OpenWrt-%E6%B7%BB%E5%8A%A0-RTC/" class="post-title-link" itemprop="url">OpenWrt 添加 RTC</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2015-06-30 23:46:20" itemprop="dateCreated datePublished" datetime="2015-06-30T23:46:20+08:00">2015-06-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-26 19:02:36" itemprop="dateModified" datetime="2019-11-26T19:02:36+08:00">2019-11-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/openwrt/" itemprop="url" rel="index">
+                    <span itemprop="name">openwrt</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="TP-Link703（ar71xx-增加实时时钟（RTC-ds1307）"><a href="#TP-Link703（ar71xx-增加实时时钟（RTC-ds1307）" class="headerlink" title="TP-Link703（ar71xx)增加实时时钟（RTC ds1307）"></a>TP-Link703（ar71xx)增加实时时钟（RTC ds1307）</h2><h3 id="RTC通讯GPIO"><a href="#RTC通讯GPIO" class="headerlink" title="RTC通讯GPIO"></a>RTC通讯GPIO</h3><p>选取openwrt pcb板上相应空闲GPIO端口，作为与I2C芯片通讯端口。<br>通过GPIO模拟I2C总线时序来实现与扩展I2C芯片通讯。<br>若无法确定当前GPIO端口，参考<a href="http://wiki.openwrt.org/doc/hardware/port.gpio" target="_blank" rel="noopener">openwrt GPIO官方wiki</a>确定连接的GPIO。</p>
+<h3 id="内核开启RTC支持"><a href="#内核开启RTC支持" class="headerlink" title="内核开启RTC支持"></a>内核开启RTC支持</h3><p>编辑target/linux/ar71xx/Makefile，添加</p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="deletion">-FEATURES:=squashfs jffs2 targz </span></span><br><span class="line"><span class="addition">+FEATURES:=squashfs jffs2 targz rtc</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>vi target/linux/ar71xx/config-3.3</strong></p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">CONFIG_RTC_CLASS</span>=y</span><br><span class="line"><span class="attr">CONFIG_RTC_DRV_DS1307</span>=y</span><br></pre></td></tr></table></figure>
+
+<p><strong>vi .config</strong></p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">CONFIG_RTC_SUPPORT</span>=y</span><br><span class="line"><span class="attr">CONFIG_DEFAULT_RTC_SUPPORT</span>=y</span><br><span class="line"><span class="attr">CONFIG_PACKAGE_kmod-rtc-ds1307</span>=y</span><br></pre></td></tr></table></figure>
+
+<p>删除openwr编译工程目录下的tmp文件夹<br>之后执行make，编译完成后，需要手动加载rtc驱动</p>
+<h3 id="挂载相关驱动"><a href="#挂载相关驱动" class="headerlink" title="挂载相关驱动"></a>挂载相关驱动</h3><p>参考<a href="http://wiki.wrtnode.com/index.php?title=WRTnode_add_i2c_support/zh-cn" target="_blank" rel="noopener">WRTnode添加i2c支持</a>，添加I2C驱动。</p>
+<p>i2ctools package也需要安装，可通过i2ctool来检测器件是否正常挂载<br>SDA = 20,SCL = 19。根据自己实际连接状况进行替换。</p>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root<span class="title">@openwrt</span>:~# insmod <span class="keyword">i2</span><span class="keyword">c</span>-gpio-custom bus<span class="number">0</span>=<span class="number">0</span>,<span class="number">20</span>,<span class="number">19</span></span><br><span class="line">echo ds<span class="number">1307</span> <span class="number">0x68</span> &gt; '/sys/class/<span class="keyword">i2</span><span class="keyword">c</span>-dev/<span class="keyword">i2</span><span class="keyword">c</span><span class="number">-0</span>/device/new_device'</span><br></pre></td></tr></table></figure>
+<p>若无错误提示，通过i2ctool工具检测ds1307是否挂载成功</p>
+<figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">root@openwrt:~#</span> <span class="comment">i2cdetect</span> <span class="literal">-</span><span class="comment">y</span> <span class="comment">0</span></span><br><span class="line"><span class="comment"></span>     <span class="comment">0</span>  <span class="comment">1</span>  <span class="comment">2</span>  <span class="comment">3</span>  <span class="comment">4</span>  <span class="comment">5</span>  <span class="comment">6</span>  <span class="comment">7</span>  <span class="comment">8</span>  <span class="comment">9</span>  <span class="comment">a</span>  <span class="comment">b</span>  <span class="comment">c</span>  <span class="comment">d</span>  <span class="comment">e</span>  <span class="comment">f</span></span><br><span class="line"><span class="comment">00:</span>          -- -- -- -- -- -- -- -- -- -- -- -- --</span><br><span class="line"><span class="comment">10:</span> -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --</span><br><span class="line"><span class="comment">20:</span> -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --</span><br><span class="line"><span class="comment">30:</span> -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --</span><br><span class="line"><span class="comment">40:</span> -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --</span><br><span class="line"><span class="comment">50:</span> -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --</span><br><span class="line"><span class="comment">60:</span> -- -- -- -- -- -- -- -- <span class="comment">UU</span> -- -- -- -- -- -- --</span><br><span class="line"><span class="comment">70:</span> -- -- -- -- -- -- -- --</span><br></pre></td></tr></table></figure>
+
+<p>如上所示，ds1307挂载成功。</p>
+<p>通过以下指令设置同步rtc时钟</p>
+<blockquote>
+<p><strong>openwrt系统时间-&gt;rtc时钟芯片</strong></p>
+</blockquote>
+<blockquote>
+<p>hwclock -w</p>
+</blockquote>
+<blockquote>
+<p><strong>rtc时间-&gt;openwrt系统时间</strong></p>
+</blockquote>
+<blockquote>
+<p>hwclock -s</p>
+</blockquote>
+<p>参考连接中，给出了自动挂载内核模块和时钟同步脚本，稍加修改即可完成上电同步</p>
+<h2 id="相关参考链接"><a href="#相关参考链接" class="headerlink" title="相关参考链接"></a>相关参考链接</h2><p><a href="http://blog.oldcomputerjunk.net/2015/using-an-i2c-rtc-with-the-carambola2-or-any-openwrt-modified-router/" target="_blank" rel="noopener">Using an i2c RTC with the Carambola2</a></p>
+<p><a href="http://wiki.openwrt.org/toh/tp-link/tl-wr1043nd#i_c_gpio_mod" target="_blank" rel="noopener">opewrt wiki I2C</a></p>
+<p><a href="http://wiki.openwrt.org/oldwiki/port.i2c" target="_blank" rel="noopener">openwrt wiki oldI2C</a></p>
+<p><a href="https://forum.openwrt.org/viewtopic.php?id=33845" target="_blank" rel="noopener">openwrt forum</a></p>
+<p><a href="https://forum.openwrt.org/viewtopic.php?id=45139" target="_blank" rel="noopener">openwrt forum</a></p>
+<p><a href="http://blog.csdn.net/xukai871105/article/details/15029843" target="_blank" rel="noopener">I2C tools使用</a></p>
+<p><a href="http://www.pragti.ch/kippycam/2012/08/15/Adding-an-I2C-interface-to-the-TL-WR703N/" target="_blank" rel="noopener">Adding an I2C interface to the TL-WR703N</a></p>
+<p><a href="http://wiki.wrtnode.com/index.php?title=WRTnode_add_i2c_support/zh-cn" target="_blank" rel="noopener">WRTnode添加i2c支持</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/06/15/%E5%AD%A6%E4%B9%A0%E9%A1%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/wln.jpg">
+      <meta itemprop="name" content="Darkknight">
+      <meta itemprop="description" content="嵌入式、openwrt、c、前端">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="善能">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2015/06/15/%E5%AD%A6%E4%B9%A0%E9%A1%B9/" class="post-title-link" itemprop="url">学习项</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2015-06-15 23:43:06" itemprop="dateCreated datePublished" datetime="2015-06-15T23:43:06+08:00">2015-06-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-26 19:02:36" itemprop="dateModified" datetime="2019-11-26T19:02:36+08:00">2019-11-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%9A%8F%E6%83%B3/" itemprop="url" rel="index">
+                    <span itemprop="name">随想</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="凌乱回忆"><a href="#凌乱回忆" class="headerlink" title="凌乱回忆"></a>凌乱回忆</h1><p>Markdown语法，稍微熟悉了些，mac下的todolist现阶段采用“奇妙清单”。<br>接下来开始，使用iBooks进行相关书籍阅读。<br>openwrt的ubus和rpc机制，应该查阅luci2来进行学习。</p>
+<p>现阶段，还是安心把linux相关完结，之后是算法和前端相关方向的学习。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/05/24/%E5%A4%8F%E5%A4%9C%E9%9A%8F%E6%83%B3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/wln.jpg">
+      <meta itemprop="name" content="Darkknight">
+      <meta itemprop="description" content="嵌入式、openwrt、c、前端">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="善能">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2015/05/24/%E5%A4%8F%E5%A4%9C%E9%9A%8F%E6%83%B3/" class="post-title-link" itemprop="url">夏夜随想</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2015-05-24 23:40:52" itemprop="dateCreated datePublished" datetime="2015-05-24T23:40:52+08:00">2015-05-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-26 19:02:36" itemprop="dateModified" datetime="2019-11-26T19:02:36+08:00">2019-11-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%9A%8F%E6%83%B3/" itemprop="url" rel="index">
+                    <span itemprop="name">随想</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="人情练达即文章"><a href="#人情练达即文章" class="headerlink" title="人情练达即文章"></a>人情练达即文章</h2><p>早有更新自己博客的想法，既然也转到了互联网这个行当。<br>那也就开始github blog的玩法吧。也尝试下Markdown的用法。<br>其他的学习，也要全面展开了。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+  </div>
+
+  
+
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Darkknight"
+      src="/images/wln.jpg">
+  <p class="site-author-name" itemprop="name">Darkknight</p>
+  <div class="site-description" itemprop="description">嵌入式、openwrt、c、前端</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/jdwang001" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;jdwang001" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/mailto:lhylrry1100@126.com" title="E-Mail → mailto:lhylrry1100@126.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.bilibili.com/video/av68451133" title="bilibili → https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;av68451133" rel="noopener" target="_blank"><i class="fa fa-fw fa-tv"></i>bilibili</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Darkknight</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.5.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

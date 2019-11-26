@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="alternate" href="/atom.xml" title="善能" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="spf13配置YouCompleteMe本文适用 不熟悉spf13安装插件方法   想使用YouCompleteMe，C补全，并可跳转到相关函数定义或声明  完成安装后的想法YoucompleteMe的难点，只在于自动跳转和Ultisnips的自动补全基于spf13安装的YouCompleMe，已预设Ultisnips的绑定键操作官方的推荐已经很不错，自动补全针对于#ifndef还是有问题，选中后">
+<meta name="keywords" content="sfp13 YouCompleteMe">
+<meta property="og:type" content="article">
+<meta property="og:title" content="spf13配置YouCompleteMe">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2015&#x2F;09&#x2F;06&#x2F;spf13%E9%85%8D%E7%BD%AEYouCompleteMe&#x2F;index.html">
+<meta property="og:site_name" content="善能">
+<meta property="og:description" content="spf13配置YouCompleteMe本文适用 不熟悉spf13安装插件方法   想使用YouCompleteMe，C补全，并可跳转到相关函数定义或声明  完成安装后的想法YoucompleteMe的难点，只在于自动跳转和Ultisnips的自动补全基于spf13安装的YouCompleMe，已预设Ultisnips的绑定键操作官方的推荐已经很不错，自动补全针对于#ifndef还是有问题，选中后">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-11-26T11:02:36.395Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2015/09/06/spf13%E9%85%8D%E7%BD%AEYouCompleteMe/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>spf13配置YouCompleteMe | 善能</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d1ce12d4aba207e7426f17e9abd16b65";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">善能</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">一朝风月 万古长空</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/09/06/spf13%E9%85%8D%E7%BD%AEYouCompleteMe/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/wln.jpg">
+      <meta itemprop="name" content="Darkknight">
+      <meta itemprop="description" content="嵌入式、openwrt、c、前端">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="善能">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          spf13配置YouCompleteMe
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2015-09-06 01:10:20" itemprop="dateCreated datePublished" datetime="2015-09-06T01:10:20+08:00">2015-09-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-26 19:02:36" itemprop="dateModified" datetime="2019-11-26T19:02:36+08:00">2019-11-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux-vim/" itemprop="url" rel="index">
+                    <span itemprop="name">linux vim</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="spf13配置YouCompleteMe"><a href="#spf13配置YouCompleteMe" class="headerlink" title="spf13配置YouCompleteMe"></a>spf13配置YouCompleteMe</h1><h2 id="本文适用"><a href="#本文适用" class="headerlink" title="本文适用"></a>本文适用</h2><ul>
+<li>不熟悉spf13安装插件方法  </li>
+<li>想使用YouCompleteMe，C补全，并可跳转到相关函数定义或声明</li>
+</ul>
+<h2 id="完成安装后的想法"><a href="#完成安装后的想法" class="headerlink" title="完成安装后的想法"></a>完成安装后的想法</h2><p>YoucompleteMe的难点，只在于自动跳转和Ultisnips的自动补全<br>基于spf13安装的YouCompleMe，已预设Ultisnips的绑定键操作<br>官方的推荐已经很不错，自动补全针对于#ifndef还是有问题，选中后只用Ctrl+j无反应<br>暂未解决<br>spf13会自动卸载相关冲突的自动补全<br><strong>参见:</strong></p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~<span class="string">/.vimrc</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">691</span> <span class="comment">" remap Ultisnips for compatibility for YCM</span></span><br><span class="line"><span class="number">692</span> <span class="keyword">let</span> <span class="variable">g:UltiSnipsExpandTrigger</span> = <span class="string">'&lt;C-j&gt;'</span></span><br><span class="line"><span class="number">693</span> <span class="keyword">let</span> <span class="variable">g:UltiSnipsJumpForwardTrigger</span> = <span class="string">'&lt;C-j&gt;'</span></span><br><span class="line"><span class="number">694</span> <span class="keyword">let</span> <span class="variable">g:UltiSnipsJumpBackwardTrigger</span> = <span class="string">'&lt;C-k&gt;'</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="spf13下安装YouCompleteMe和YCM-Generator"><a href="#spf13下安装YouCompleteMe和YCM-Generator" class="headerlink" title="spf13下安装YouCompleteMe和YCM-Generator"></a>spf13下安装YouCompleteMe和YCM-Generator</h2><figure class="highlight scilab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">echo <span class="string">"let g:spf13_bundle_groups=['</span>general', <span class="string">'writing'</span>, <span class="string">'programming'</span>, <span class="string">'php'</span>, <span class="string">'ruby'</span>, <span class="string">'python'</span>, <span class="string">'javascript'</span>, <span class="string">'go'</span>, <span class="string">'html'</span>, <span class="string">'misc'</span>, <span class="string">'youcompleteme'</span>, ]<span class="string">" &gt;&gt; ~/.vimrc.before.local</span></span><br><span class="line"><span class="string">echo "</span>Bundle <span class="string">'rdnetto/YCM-Generator'</span><span class="string">" &gt;&gt; ~/.vimrc.bundles.local</span></span><br><span class="line"><span class="string">vim +BundleInstall! +BundleClean</span></span><br></pre></td></tr></table></figure>
+<p>YouCompleteMe较大安装速度较慢，也可直接clone相关目录，而后再执行安装命令。<br>YCM-Generator针对不同工程，自动生成.ycm_extra_conf.py文件。<br>我通常只是进行c语言的开发，所以将.ycm_extra_conf.py文件拷贝到”~/“目录，并在.vimrc.local中指定，详见下文描述。</p>
+<h3 id="Mac-OS-X-安装"><a href="#Mac-OS-X-安装" class="headerlink" title="Mac OS X 安装"></a>Mac OS X 安装</h3><p>Mac下需要通过brew安装CMake,而后编译YouCompleteMe  </p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">brew install CMake</span><br><span class="line"><span class="keyword">cd</span> ~<span class="string">/.vim/bundle/YouCompleteMe</span></span><br><span class="line"><span class="string">./install.py</span> <span class="params">--clang-completer</span></span><br></pre></td></tr></table></figure>
+
+<p>针对于YCM-Generator，安装完成后，可通过以下命令验证是否成功</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cd</span> ~<span class="string">/.vim/bundle/YCM-Generator</span></span><br><span class="line"><span class="string">./config_gen.py</span> <span class="params">--help</span></span><br></pre></td></tr></table></figure>
+<p>如果提示  </p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">env: python2:</span> <span class="literal">No</span> <span class="string">such</span> <span class="string">file</span> <span class="string">or</span> <span class="string">directory</span></span><br></pre></td></tr></table></figure>
+<p>则为pyton路径没有找到，通过如下命令创建软连接</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -sf <span class="regexp">/usr/</span>bin<span class="regexp">/python /u</span>sr<span class="regexp">/bin/</span>python2</span><br></pre></td></tr></table></figure>
+<p>当出现相关帮助信息时，则安装完成。</p>
+<p>通过vim打开工程目录下的文件，此文件最好和Makefile在同目录。<br>而后，在vim中执行命令</p>
+<figure class="highlight clojure"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">:CCGenerateConfig</span></span><br></pre></td></tr></table></figure>
+<p>则会在打开的文件目录，生成.ycm_extra_conf.py文件。<br>重启vim后，才能够使用。所以，我直接配置了全局.ycm_extra_conf.py文件。<br>此文件中注释也比较详细，可自行浏览。</p>
+<p> ~/.vimrc.local中，关于YouCompleteMe的配置</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">"不使用补全的文件列表</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">g:ycm_filetype_blacklist</span> = &#123;</span><br><span class="line">      \ <span class="string">'tagbar'</span> : <span class="number">1</span>,</span><br><span class="line">      \ <span class="string">'qf'</span> : <span class="number">1</span>,</span><br><span class="line">      \ <span class="string">'notes'</span> : <span class="number">1</span>,</span><br><span class="line">      \ <span class="string">'unite'</span> : <span class="number">1</span>,</span><br><span class="line">      \ <span class="string">'text'</span> : <span class="number">1</span>,</span><br><span class="line">      \ <span class="string">'vimwiki'</span> : <span class="number">1</span>,</span><br><span class="line">      \ <span class="string">'gitcommit'</span> : <span class="number">1</span>,</span><br><span class="line">      \&#125;</span><br><span class="line"><span class="comment">"指定配置文件位置</span></span><br><span class="line"><span class="comment">"我日常都在c下工作，所以使用生成文件后，直接指定为默认</span></span><br><span class="line"><span class="comment">"大家可以根据自己的工作环境，决定是否配置此选项</span></span><br><span class="line"><span class="comment">"此选项的优先级最低，优先查找工程目录中是否有.ycm_extra_conf.py文件</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">g:ycm_global_ycm_extra_conf</span> = <span class="string">'~/.ycm_extra_conf.py'</span></span><br><span class="line"><span class="comment">"每次打开无需提示是否读取.ycm_extra_conf.py文件</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">g:ycm_confirm_extra_conf</span> = <span class="number">0</span></span><br><span class="line"><span class="comment">"实时语法检查</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">g:syntastic_always_populate_loc_list</span> = <span class="number">1</span></span><br><span class="line"><span class="comment">",jd映射为跳转到相关“声明“或”定义“位置</span></span><br><span class="line"><span class="keyword">nnoremap</span> <span class="symbol">&lt;leader&gt;</span>jd :YcmCompleter GoToDefinitionElseDeclaration<span class="symbol">&lt;CR&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>对于较为复杂的工程，推荐使用bear生成相关文件，我的工程依靠.ycm_extra_conf.py已经足够。如果想要了解，请参考参考链接。</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://github.com/Valloric/YouCompleteMe#user-guide" target="_blank" rel="noopener">YouCompleteMe官方用户向导</a></p>
+<p><a href="http://tieba.baidu.com/p/2672605209" target="_blank" rel="noopener">vim智能补全插件YouCompleteMe新手完全攻略</a></p>
+<p><a href="http://feihu.me/blog/2014/intro-to-vim/#section-3" target="_blank" rel="noopener">跟我一起学习VIM - The Life Changing Editor</a></p>
+<p><a href="http://vim.spf13.com/" target="_blank" rel="noopener">spf13官方介绍</a></p>
+<h2 id="TIPS"><a href="#TIPS" class="headerlink" title="TIPS"></a>TIPS</h2><ul>
+<li><p>spf13 安装插件  </p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">"安装vim-colors的例子</span></span><br><span class="line"><span class="keyword">echo</span> Bundle \<span class="string">'spf13/vim-colors\'</span> &gt;&gt; ~/.vimrc.bundles.local  </span><br><span class="line"><span class="keyword">vim</span> +BundleInstall! +BundleClean</span><br></pre></td></tr></table></figure></li>
+<li><p>spf13 卸载插件</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">"卸载即使将Bundle更改为UnBundle</span></span><br><span class="line"><span class="keyword">echo</span> UnBundle \<span class="string">'AutoClose\'</span> &gt;&gt; ~/.vimrc.bundles.local</span><br><span class="line"><span class="keyword">echo</span> UnBundle \<span class="string">'scrooloose/syntastic\'</span> &gt;&gt; ~/.vimrc.bundles.local</span><br><span class="line"><span class="keyword">vim</span> +BundleClean!</span><br></pre></td></tr></table></figure></li>
+<li><p>查看已安装插件列表</p>
+<figure class="highlight erlang-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim +BundleList!</span><br></pre></td></tr></table></figure></li>
+<li><p>小命令</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">:BundleList</span>          <span class="comment">#已安装列表</span></span><br><span class="line"><span class="symbol">:BundleInstall</span>(!)    <span class="comment">#安装、升级</span></span><br><span class="line"><span class="symbol">:BundleSearch</span>(!)     <span class="comment">#搜索</span></span><br><span class="line"><span class="symbol">:YcmDiags</span>            <span class="comment">#可以打开location-list查看警告和错误信息</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/sfp13-YouCompleteMe/" rel="tag"># sfp13 YouCompleteMe</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2015/07/25/LFS7-7%E7%BC%96%E8%AF%91%E8%A6%81%E7%82%B9/" rel="prev" title="LFS7.7编译要点">
+      <i class="fa fa-chevron-left"></i> LFS7.7编译要点
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#spf13配置YouCompleteMe"><span class="nav-number">1.</span> <span class="nav-text">spf13配置YouCompleteMe</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#本文适用"><span class="nav-number">1.1.</span> <span class="nav-text">本文适用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#完成安装后的想法"><span class="nav-number">1.2.</span> <span class="nav-text">完成安装后的想法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spf13下安装YouCompleteMe和YCM-Generator"><span class="nav-number">1.3.</span> <span class="nav-text">spf13下安装YouCompleteMe和YCM-Generator</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Mac-OS-X-安装"><span class="nav-number">1.3.1.</span> <span class="nav-text">Mac OS X 安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接"><span class="nav-number">1.4.</span> <span class="nav-text">参考链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TIPS"><span class="nav-number">1.5.</span> <span class="nav-text">TIPS</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Darkknight"
+      src="/images/wln.jpg">
+  <p class="site-author-name" itemprop="name">Darkknight</p>
+  <div class="site-description" itemprop="description">嵌入式、openwrt、c、前端</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/jdwang001" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;jdwang001" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/mailto:lhylrry1100@126.com" title="E-Mail → mailto:lhylrry1100@126.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.bilibili.com/video/av68451133" title="bilibili → https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;av68451133" rel="noopener" target="_blank"><i class="fa fa-fw fa-tv"></i>bilibili</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Darkknight</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.5.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
