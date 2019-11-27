@@ -5,6 +5,7 @@ Allow: /about/
 Allow: /archives/
 Allow: /categories/
 Allow: /tags/
+Allow: /_posts/
 
 Disallow: /assets/
 Disallow: /img/
