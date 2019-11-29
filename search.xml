@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>go: cannot determine module path for source directory /tmp/wzd (outside GOPATH, no import comments)</title>
+    <url>/2019/11/29/go-cannot-determine-module-path-for-source-directory-tmp-wzd-outside-GOPATH-no-import-comments/</url>
+    <content><![CDATA[<p>有时会在/tmp/wzd目录下, 用vim进行golang片段代码的验证,当执行go build编译时,出现</p>
+<blockquote>
+<p>go: cannot determine module path for source directory /tmp/wzd (outside GOPATH, no import comments)</p>
+</blockquote>
+<p>此问题是,Go 1.13版本之后,默认使用Go Modules 模式,而/tmp/wzd目录,不在GOPATH/src/目录下,导致未能自动生成go.mod</p>
+<p>解决办法:</p>
+<figure class="highlight applescript"><table><tr><td class="code"><pre><span class="line">go <span class="keyword">mod</span> init your-dir-<span class="built_in">name</span></span><br></pre></td></tr></table></figure>
+
+<p>your-dir-name 我的环境下替代为wzd<br>而后可正常进行go build编译</p>
+]]></content>
+      <tags>
+        <tag>go module</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>spf13配置YouCompleteMe</title>
     <url>/2015/09/06/spf13%E9%85%8D%E7%BD%AEYouCompleteMe/</url>
     <content><![CDATA[<h1 id="spf13配置YouCompleteMe"><a href="#spf13配置YouCompleteMe" class="headerlink" title="spf13配置YouCompleteMe"></a>spf13配置YouCompleteMe</h1><h2 id="本文适用"><a href="#本文适用" class="headerlink" title="本文适用"></a>本文适用</h2><ul>

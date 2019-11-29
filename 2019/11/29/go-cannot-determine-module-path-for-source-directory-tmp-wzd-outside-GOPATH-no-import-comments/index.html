@@ -47,16 +47,18 @@
   };
 </script>
 
-  <meta name="description" content="嵌入式、openwrt、c、前端">
-<meta property="og:type" content="website">
-<meta property="og:title" content="善能">
-<meta property="og:url" content="http:&#x2F;&#x2F;jdwang001.github.io&#x2F;tags&#x2F;%E6%B5%AE%E7%94%9F%E8%8B%A5%E6%A2%A6&#x2F;index.html">
+  <meta name="description" content="有时会在&#x2F;tmp&#x2F;wzd目录下, 用vim进行golang片段代码的验证,当执行go build编译时,出现  go: cannot determine module path for source directory &#x2F;tmp&#x2F;wzd (outside GOPATH, no import comments)  此问题是,Go 1.13版本之后,默认使用Go Modules 模式,而&#x2F;tmp&#x2F;wz">
+<meta name="keywords" content="go module">
+<meta property="og:type" content="article">
+<meta property="og:title" content="go: cannot determine module path for source directory &#x2F;tmp&#x2F;wzd (outside GOPATH, no import comments)">
+<meta property="og:url" content="http:&#x2F;&#x2F;jdwang001.github.io&#x2F;2019&#x2F;11&#x2F;29&#x2F;go-cannot-determine-module-path-for-source-directory-tmp-wzd-outside-GOPATH-no-import-comments&#x2F;index.html">
 <meta property="og:site_name" content="善能">
-<meta property="og:description" content="嵌入式、openwrt、c、前端">
+<meta property="og:description" content="有时会在&#x2F;tmp&#x2F;wzd目录下, 用vim进行golang片段代码的验证,当执行go build编译时,出现  go: cannot determine module path for source directory &#x2F;tmp&#x2F;wzd (outside GOPATH, no import comments)  此问题是,Go 1.13版本之后,默认使用Go Modules 模式,而&#x2F;tmp&#x2F;wz">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-11-29T07:45:35.120Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://jdwang001.github.io/tags/%E6%B5%AE%E7%94%9F%E8%8B%A5%E6%A2%A6/">
+<link rel="canonical" href="http://jdwang001.github.io/2019/11/29/go-cannot-determine-module-path-for-source-directory-tmp-wzd-outside-GOPATH-no-import-comments/">
 
 
 <script id="page-configurations">
@@ -64,13 +66,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false,
+    isPost: true,
     isPage: false,
     isArchive: false
   };
 </script>
 
-  <title>标签: 浮生若梦 | 善能</title>
+  <title>go: cannot determine module path for source directory /tmp/wzd (outside GOPATH, no import comments) | 善能</title>
   
 
 
@@ -214,70 +216,96 @@
           <div class="content">
             
 
+  <div class="posts-expand">
+      
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h1 class="collection-header">浮生若梦
-          <small>标签</small>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://jdwang001.github.io/2019/11/29/go-cannot-determine-module-path-for-source-directory-tmp-wzd-outside-GOPATH-no-import-comments/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/wln.jpg">
+      <meta itemprop="name" content="Darkknight">
+      <meta itemprop="description" content="嵌入式、openwrt、c、前端">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="善能">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          go: cannot determine module path for source directory /tmp/wzd (outside GOPATH, no import comments)
         </h1>
-      </div>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-11-29 15:42:18 / 修改时间：15:45:35" itemprop="dateCreated datePublished" datetime="2019-11-29T15:42:18+08:00">2019-11-29</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <h1 class="collection-header">2015</h1>
-    </div>
+        <p>有时会在/tmp/wzd目录下, 用vim进行golang片段代码的验证,当执行go build编译时,出现</p>
+<blockquote>
+<p>go: cannot determine module path for source directory /tmp/wzd (outside GOPATH, no import comments)</p>
+</blockquote>
+<p>此问题是,Go 1.13版本之后,默认使用Go Modules 模式,而/tmp/wzd目录,不在GOPATH/src/目录下,导致未能自动生成go.mod</p>
+<p>解决办法:</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go <span class="keyword">mod</span> init your-dir-<span class="built_in">name</span></span><br></pre></td></tr></table></figure>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2015-06-15T23:43:06+08:00"
-              content="2015-06-15">
-          06-15
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2015/06/15/%E5%AD%A6%E4%B9%A0%E9%A1%B9/" itemprop="url">
-            <span itemprop="name">学习项</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2015-05-24T23:40:52+08:00"
-              content="2015-05-24">
-          05-24
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2015/05/24/%E5%A4%8F%E5%A4%9C%E9%9A%8F%E6%83%B3/" itemprop="url">
-            <span itemprop="name">夏夜随想</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
+<p>your-dir-name 我的环境下替代为wzd<br>而后可正常进行go build编译</p>
 
     </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/go-module/" rel="tag"># go module</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2015/09/06/spf13%E9%85%8D%E7%BD%AEYouCompleteMe/" rel="prev" title="spf13配置YouCompleteMe">
+      <i class="fa fa-chevron-left"></i> spf13配置YouCompleteMe
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
   </div>
-  
-  
-  
-
-  
-
 
 
           </div>

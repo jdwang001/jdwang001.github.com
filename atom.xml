@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jdwang001.github.io/"/>
-  <updated>2019-11-26T11:02:36.395Z</updated>
+  <updated>2019-11-29T07:45:35.120Z</updated>
   <id>http://jdwang001.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>go: cannot determine module path for source directory /tmp/wzd (outside GOPATH, no import comments)</title>
+    <link href="http://jdwang001.github.io/2019/11/29/go-cannot-determine-module-path-for-source-directory-tmp-wzd-outside-GOPATH-no-import-comments/"/>
+    <id>http://jdwang001.github.io/2019/11/29/go-cannot-determine-module-path-for-source-directory-tmp-wzd-outside-GOPATH-no-import-comments/</id>
+    <published>2019-11-29T07:42:18.000Z</published>
+    <updated>2019-11-29T07:45:35.120Z</updated>
+    
+    <content type="html"><![CDATA[<p>有时会在/tmp/wzd目录下, 用vim进行golang片段代码的验证,当执行go build编译时,出现</p><blockquote><p>go: cannot determine module path for source directory /tmp/wzd (outside GOPATH, no import comments)</p></blockquote><p>此问题是,Go 1.13版本之后,默认使用Go Modules 模式,而/tmp/wzd目录,不在GOPATH/src/目录下,导致未能自动生成go.mod</p><p>解决办法:</p><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go <span class="keyword">mod</span> init your-dir-<span class="built_in">name</span></span><br></pre></td></tr></table></figure><p>your-dir-name 我的环境下替代为wzd<br>而后可正常进行go build编译</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;有时会在/tmp/wzd目录下, 用vim进行golang片段代码的验证,当执行go build编译时,出现&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;go: cannot determine module path for source directory /tmp/wzd
+      
+    
+    </summary>
+    
+    
+    
+      <category term="go module" scheme="http://jdwang001.github.io/tags/go-module/"/>
+    
+  </entry>
   
   <entry>
     <title>spf13配置YouCompleteMe</title>
