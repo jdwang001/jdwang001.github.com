@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="alternate" href="/atom.xml" title="善能" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://jdwang001.github.io').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="机械郁金香mechflower制作教程刷Twitter的时候,看到了jipraus制作的机械郁金香,自己很是喜欢,正好我手头也有NodeMcu V1.0(ESP8266的板子),外加步进电机及其驱动模块.便以此为契机,进行了仿制. 制作完成的视频   虽然通读了教程,也意识到了相关部分的难度,可是在制作过程中还是经历了不少问题.由此也想给大家分享下其中的关键点.刚开始制作时,对于作者所说的  好几">
+<meta name="keywords" content="mechflower">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机械郁金香mechflower">
+<meta property="og:url" content="http:&#x2F;&#x2F;jdwang001.github.io&#x2F;2019&#x2F;12&#x2F;06&#x2F;%E6%9C%BA%E6%A2%B0%E9%83%81%E9%87%91%E9%A6%99mechflower&#x2F;index.html">
+<meta property="og:site_name" content="善能">
+<meta property="og:description" content="机械郁金香mechflower制作教程刷Twitter的时候,看到了jipraus制作的机械郁金香,自己很是喜欢,正好我手头也有NodeMcu V1.0(ESP8266的板子),外加步进电机及其驱动模块.便以此为契机,进行了仿制. 制作完成的视频   虽然通读了教程,也意识到了相关部分的难度,可是在制作过程中还是经历了不少问题.由此也想给大家分享下其中的关键点.刚开始制作时,对于作者所说的  好几">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http:&#x2F;&#x2F;jdwang001.github.io&#x2F;images&#x2F;mechflower.resources&#x2F;%E5%8F%B6%E5%AD%90%E7%94%B5%E8%B7%AF%E5%9B%BE.jpeg">
+<meta property="og:image" content="http:&#x2F;&#x2F;jdwang001.github.io&#x2F;images&#x2F;mechflower.resources&#x2F;%E5%8F%B6%E5%AD%90%E6%A8%A1%E5%85%B7%E5%9B%BE.jpeg">
+<meta property="og:image" content="http:&#x2F;&#x2F;jdwang001.github.io&#x2F;images&#x2F;mechflower.resources&#x2F;%E5%8F%B6%E5%AD%90%E6%A8%A1%E5%85%B7%E5%9B%BE2.jpeg">
+<meta property="og:image" content="http:&#x2F;&#x2F;jdwang001.github.io&#x2F;images&#x2F;mechflower.resources&#x2F;%E5%8F%B6%E5%AD%90%E7%84%8A%E6%8E%A5%E5%9B%BE.jpeg">
+<meta property="og:image" content="http:&#x2F;&#x2F;jdwang001.github.io&#x2F;images&#x2F;mechflower.resources&#x2F;%E5%8F%B6%E5%AD%90%E5%9B%BE.jpeg">
+<meta property="og:image" content="http:&#x2F;&#x2F;jdwang001.github.io&#x2F;images&#x2F;mechflower.resources&#x2F;441576580394_.pic.jpg">
+<meta property="og:image" content="http:&#x2F;&#x2F;jdwang001.github.io&#x2F;images&#x2F;mechflower.resources&#x2F;blossom-pattern_zLDw1SZLyK.jpeg">
+<meta property="og:image" content="http:&#x2F;&#x2F;jdwang001.github.io&#x2F;images&#x2F;mechflower.resources&#x2F;%E5%8F%B6%E5%AD%90%E7%84%8A%E6%8E%A5%E5%9B%BE3%E5%8F%B6%E7%89%87.jpeg">
+<meta property="og:image" content="http:&#x2F;&#x2F;jdwang001.github.io&#x2F;images&#x2F;mechflower.resources&#x2F;%E5%8F%B6%E5%AD%90%E7%84%8A%E6%8E%A5%E5%9B%BE6%E5%8F%B6%E7%89%87.jpeg">
+<meta property="og:image" content="http:&#x2F;&#x2F;jdwang001.github.io&#x2F;images&#x2F;mechflower.resources&#x2F;%E4%B8%AD%E5%BF%83%E6%8E%A8%E6%9D%86.jpeg">
+<meta property="og:image" content="http:&#x2F;&#x2F;jdwang001.github.io&#x2F;images&#x2F;mechflower.resources&#x2F;%E5%8F%B6%E8%84%89%E8%BF%9E%E6%8E%A5%E6%9D%86.jpg">
+<meta property="og:image" content="http:&#x2F;&#x2F;jdwang001.github.io&#x2F;images&#x2F;mechflower.resources&#x2F;pushrod-pattern_pe7oQ3mlYL.jpeg">
+<meta property="og:image" content="http:&#x2F;&#x2F;jdwang001.github.io&#x2F;images&#x2F;mechflower.resources&#x2F;p2072976_ar6TYcBghM.jpeg">
+<meta property="og:image" content="http:&#x2F;&#x2F;jdwang001.github.io&#x2F;images&#x2F;mechflower.resources&#x2F;%E9%92%A2%E9%93%81%E4%BE%A0%E6%A0%B8%E5%BF%83%E5%9B%BE.jpeg">
+<meta property="og:image" content="http:&#x2F;&#x2F;jdwang001.github.io&#x2F;images&#x2F;mechflower.resources&#x2F;%E9%92%A2%E9%93%81%E4%BE%A0%E6%A0%B8%E5%BF%83%E5%9B%BE%E7%82%B9%E4%BA%AE.jpeg">
+<meta property="og:image" content="http:&#x2F;&#x2F;jdwang001.github.io&#x2F;images&#x2F;mechflower.resources&#x2F;0CF31F29-3C81-4EEE-8EA4-669EA3C1E142.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;jdwang001.github.io&#x2F;images&#x2F;mechflower.resources&#x2F;wx_camera_1567349218175.jpg">
+<meta property="og:image" content="http:&#x2F;&#x2F;jdwang001.github.io&#x2F;images&#x2F;mechflower.resources&#x2F;A0B1D4A0-757E-4C17-A36C-9D2DEA3FA538.jpg">
+<meta property="og:image" content="http:&#x2F;&#x2F;jdwang001.github.io&#x2F;images&#x2F;mechflower.resources&#x2F;FB36A288-8D62-4E64-A9B8-052F6F8CF43F.jpg">
+<meta property="og:updated_time" content="2019-12-20T09:45:49.450Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;jdwang001.github.io&#x2F;images&#x2F;mechflower.resources&#x2F;%E5%8F%B6%E5%AD%90%E7%94%B5%E8%B7%AF%E5%9B%BE.jpeg">
+
+<link rel="canonical" href="http://jdwang001.github.io/2019/12/06/%E6%9C%BA%E6%A2%B0%E9%83%81%E9%87%91%E9%A6%99mechflower/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>机械郁金香mechflower | 善能</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d1ce12d4aba207e7426f17e9abd16b65";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">善能</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">一朝风月 万古长空</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://jdwang001.github.io/2019/12/06/%E6%9C%BA%E6%A2%B0%E9%83%81%E9%87%91%E9%A6%99mechflower/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/wln.jpg">
+      <meta itemprop="name" content="Darkknight">
+      <meta itemprop="description" content="嵌入式、openwrt、c、前端">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="善能">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          机械郁金香mechflower
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-12-06 18:08:39" itemprop="dateCreated datePublished" datetime="2019-12-06T18:08:39+08:00">2019-12-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-12-20 17:45:49" itemprop="dateModified" datetime="2019-12-20T17:45:49+08:00">2019-12-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mechflower/" itemprop="url" rel="index">
+                    <span itemprop="name">mechflower</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="机械郁金香mechflower制作教程"><a href="#机械郁金香mechflower制作教程" class="headerlink" title="机械郁金香mechflower制作教程"></a>机械郁金香mechflower制作教程</h3><p>刷Twitter的时候,看到了<a href="https://twitter.com/jipraus" target="_blank" rel="noopener">jipraus</a>制作的机械郁金香,自己很是喜欢,正好我手头也有NodeMcu V1.0(ESP8266的板子),外加步进电机及其驱动模块.<br>便以此为契机,进行了仿制.</p>
+<h4 id="制作完成的视频"><a href="#制作完成的视频" class="headerlink" title="制作完成的视频"></a>制作完成的视频</h4><iframe src="//player.bilibili.com/player.html?aid=68451133&cid=118634896&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+
+<p>虽然通读了教程,也意识到了相关部分的难度,可是在制作过程中还是经历了不少问题.由此也想给大家分享下其中的关键点.<br>刚开始制作时,对于作者所说的</p>
+<blockquote>
+<p>好几次想把所有东西扔进垃圾桶</p>
+</blockquote>
+<p>都有些不以为然.<br>而当自己后续制作时,每每遇到了抓狂的问题,却是深以为是.<br>由此总结下自己的心得,也给国内的爱好者提供些方法,好解决制作过程中遇到的问题.<br>程序源码都在最后附有连接.<br>闲言少叙,教程正式开始.</p>
+<h4 id="郁金香工作原理"><a href="#郁金香工作原理" class="headerlink" title="郁金香工作原理"></a>郁金香工作原理</h4><p>简单来说,整个郁金香由6片花瓣组成,每一片都包含五个白色的LED.每片花瓣都需要连接到Arduino的一个输出端口.花蕊由7个WS2812B RGB三色LED组成,并被6片花瓣包裹起来.<br>从电路的观点来看,整个花是GND,而叶脉都是VCC.<br>花瓣的开合是由推杆推动的.推杆推到顶部,花朵盛开,<br>推杆拉到底部,花朵关闭.而推杆是由一个减速电机驱动.<br>jipraus的原始版本,还有一个触摸开关,通过触摸开关控制开合.我这个版本由于是通过手机控制,所以就直接省略了,如果需要的话可以参考附录的原教程链接.</p>
+<h4 id="购物清单"><a href="#购物清单" class="headerlink" title="购物清单"></a>购物清单</h4><ul>
+<li>NodeMcuV1.0</li>
+<li>步进电机28BYJ48+ULN2003驱动板4相5线(见注意事项) </li>
+<li>1mm铜丝 总长3m</li>
+<li>2mm铜管 总长1m</li>
+<li>0.1mm漆包线 一卷(外层绝缘的铜丝)</li>
+<li>WS2812B 5050封装 LED(rgb三色led)</li>
+<li>白色 1206封装 LED</li>
+<li>焊锡膏</li>
+<li>焊工夹具</li>
+<li>竹筒(因地制宜的底座)</li>
+<li>杜邦线(若无,能连接对应模块即可)</li>
+</ul>
+<p>注意事项:</p>
+<ul>
+<li><strong>2mm的铜管内径为1mm,要确保1mm铜丝可以穿入.</strong> 以满足后续花开动作.如果自己有疑问,可以直接跟淘宝店家沟通即可.制作过程中,我铜丝竟然买少了,想着在北京直接买能快速搞定,可我在北京跑了好多五金店都没能买到.去中发市场一样没有.所以简单便捷的方式,<strong>还是直接淘宝.</strong></li>
+<li><strong>铜丝和铜管的焊接,为了防止烫伤和更为方便的焊接,可以用焊锡膏涂在焊接处,使用夹具夹紧.</strong> 比较推荐这种方法,安全高效.</li>
+<li>当然,如果自认为焊接技术比较高超,如我一般.可以使用焊锡丝加松香进行.但要用砂纸或刷锅的钢丝球,打磨掉铜管和铜丝外部的氧化膜,以保证顺利进行焊接.<strong>要注意铜具有很好的导热性,不要烫到手.</strong></li>
+<li>买个SG90舵机即可.我是制作了一个门铃自动应答器,就是听到门铃声响,自动摁下开门键.遗留了步进电机及UL2003N驱动模块.所以就拿来直接使用.而这些反而增大了体积,所以,不要学我.买个SG90电机即可.理论上Arduino的板子都应该可以直接驱动,无需那么麻烦.但是相关电机驱动需要自己借鉴jipraus的程序.</li>
+<li>为了能隐藏驱动电路,原作者动用了机床,磨了一个底座出来.而我向来取巧,所以采用了竹筒作为底座部分.可以让商家帮忙在竹筒顶部中心打一个2mm的孔,在竹筒杯口,开一个安放电源线的口即可.当然竹子的质感不能和实木相比,但胜在简单方便.如果想要制作送给女孩子,也可以选择一家木工作坊,自己借用工具,车一个出来.</li>
+</ul>
+<h4 id="购物链接"><a href="#购物链接" class="headerlink" title="购物链接"></a>购物链接</h4><p><a href="https://item.taobao.com/item.htm?spm=a1z09.2.0.0.67002e8dYiFXPm&id=545267914157&_u=gfllp7gd5d6" target="_blank" rel="noopener">SG90</a><br><a href="https://detail.tmall.com/item.htm?id=40663562450&spm=a1z09.2.0.0.67002e8dYiFXPm&_u=gfllp7g18b8" target="_blank" rel="noopener">步进电机28BYJ48+ULN2003驱动板 4相 5线</a></p>
+<p>其他部分,需要大家自行淘宝了.我就不做推荐了.</p>
+<h4 id="铜丝铜管焊接"><a href="#铜丝铜管焊接" class="headerlink" title="铜丝铜管焊接"></a>铜丝铜管焊接</h4><p>在购物清单的注意事项中已经说明,其他问题,如果大家有遇到,可以跟我发邮件,或者在b站私信留言,我看到就会及时回复.</p>
+<h4 id="花瓣制作"><a href="#花瓣制作" class="headerlink" title="花瓣制作"></a>花瓣制作</h4><p>如果想要能够制作出比较优雅开合的郁金香花朵.那么花瓣制作便是重中之重.<br>其中最为核心的是,要制作6片一模一样的花瓣.同样大小,同等的弧度.<br>为了完成花瓣的制作,jipraus利用石膏做了一个模子.<br>由于外网网速比较慢,而jipraus采用的亦是CC BY-NC-SA的版权,因此我就把视频传到了B站.所有引用都注明了出处,请放心观看.</p>
+<p>首先介绍下,花瓣的整体电路构成,借用jipraus的图.<br><img src="/images/mechflower.resources/%E5%8F%B6%E5%AD%90%E7%94%B5%E8%B7%AF%E5%9B%BE.jpeg" alt="b27bcc79c222553a3f2a5bb890239729"></p>
+<ul>
+<li>其中中心的叶脉线为VCC,叶边缘线为GND, 贴片LED连接叶脉和边缘,且发光面同花瓣弯曲方向.而每个花瓣的叶脉由漆包线连接到arduino板子,通过PWM进行呼吸效果的展示.</li>
+</ul>
+<p>花瓣模具图</p>
+<p><img src="/images/mechflower.resources/%E5%8F%B6%E5%AD%90%E6%A8%A1%E5%85%B7%E5%9B%BE.jpeg" alt="0585a5482355fa15a32bd3701622f2ad"><br><img src="/images/mechflower.resources/%E5%8F%B6%E5%AD%90%E6%A8%A1%E5%85%B7%E5%9B%BE2.jpeg" alt="2580aaa4d3400d4cbf35b0c7bbd582bc"></p>
+<p>制作花瓣时,需要重点关注及技巧部分</p>
+<ul>
+<li>重重重点,由于后续花朵的开合都会受到花瓣精度的影响,所以需要保证焊接的6个花瓣完全一致.如果此处没有做到,那么后续调整会更为麻烦,我当初就是对此不以为意.而当后续调整花瓣开合的时候,会非常麻烦.并且最后的效果称不上完美.</li>
+<li>如果没有jipraus的条件,也可使用细口瓶,花瓶,这类辅助类物品,代替花瓣的模具.只要弧度合适,方便在上面标注辅助线即可.</li>
+<li>焊接时需要保证,花瓣顶部金属管转轴部分能自由转动.并且,中心叶脉线不要顶到花瓣顶部,需要留出空间.</li>
+<li>如果后续想要得到一个很好的效果,必须要每一环都要做到比较精确.既是,我们虽然无法预测结果,可如果控制了每一环的结果,等到最后,效果自然不会太差.</li>
+</ul>
+<h4 id="花瓣焊接视频"><a href="#花瓣焊接视频" class="headerlink" title="花瓣焊接视频"></a>花瓣焊接视频</h4><iframe src="//player.bilibili.com/player.html?aid=79369117&cid=135823269&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+
+<h5 id="焊接完成后的验证"><a href="#焊接完成后的验证" class="headerlink" title="焊接完成后的验证"></a>焊接完成后的验证</h5><p>焊接完成后,通过万用表的二极管档位测试花瓣能否点亮.如果有问题,也好进行调整.</p>
+<p>jipraus制作完成的花瓣:<br><img src="/images/mechflower.resources/%E5%8F%B6%E5%AD%90%E7%84%8A%E6%8E%A5%E5%9B%BE.jpeg" alt="0e565aad3d25b4482d3b2b2e2d45179f"><br><img src="/images/mechflower.resources/%E5%8F%B6%E5%AD%90%E5%9B%BE.jpeg" alt="ed2dee74e8af78aec360cd84dbf1b163"></p>
+<p>我焊接完成花瓣<br><img src="/images/mechflower.resources/441576580394_.pic.jpg" alt="1d198b9b6ef332a10659ddf11cd524c5"><br>理论上,最好的焊接结果是花瓣放在一起底部正好是一个六边形.<br>由于我开始时的轻视,导致后续做的调整起来更为麻烦.<br>所以,惨痛经历告诉我们,前期要做好,后期搞得好.</p>
+<h4 id="焊接全部花瓣"><a href="#焊接全部花瓣" class="headerlink" title="焊接全部花瓣"></a>焊接全部花瓣</h4><p>6片花瓣通过底部的铜管外壁,焊接到一个六边形的底座上,相对于六边形底座,花瓣可以自由开合.<br>6片花瓣由于彼此之间会有重叠部分,所以如果按照标准的正六边形进行焊接,则不可能会有重叠.针对这个问题,jipraus制作了一张图,利用两个嵌套的六边形,分别标出其中的三条边,以辅助焊接铜管.<br>由于给出了错位空间,所以花瓣会前后错开,因此可以形成花瓣部分重叠.<br><strong>简单来讲:沿下图红线焊接即可.也就是焊接花瓣的时候,间隔一条边要么都靠里焊接,要么都靠外焊接.以此错落有致,满足花瓣可以部分重叠.</strong><br><img src="/images/mechflower.resources/blossom-pattern_zLDw1SZLyK.jpeg" alt="0925c793940d27f0cf167267fccbb7f7"><br>焊接完成后,整体效果<br><img src="/images/mechflower.resources/%E5%8F%B6%E5%AD%90%E7%84%8A%E6%8E%A5%E5%9B%BE3%E5%8F%B6%E7%89%87.jpeg" alt="b791885cab28fe7ab815b463816692e0"><br><img src="/images/mechflower.resources/%E5%8F%B6%E5%AD%90%E7%84%8A%E6%8E%A5%E5%9B%BE6%E5%8F%B6%E7%89%87.jpeg" alt="4a2500ad0117a554450bf8d114e7a23f"></p>
+<p>相关注意事项</p>
+<ul>
+<li>如果想要开合顺利,则最好错位焊接,这样就可以形成内部3片花瓣,外部3片花瓣,彼此有部分重叠.</li>
+</ul>
+<h4 id="推杆和花梗的制作"><a href="#推杆和花梗的制作" class="headerlink" title="推杆和花梗的制作"></a>推杆和花梗的制作</h4><p>这部分描述起来,比较麻烦,所以我先给出这部分的动作视频,让大家了解下整体机制.花瓣的开花和闭合部分,都是由这部分机构所推动.</p>
+<h4 id="推杆运行原理视频"><a href="#推杆运行原理视频" class="headerlink" title="推杆运行原理视频"></a>推杆运行原理视频</h4><iframe src="//player.bilibili.com/player.html?aid=79369956&cid=135826983&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+#### 推杆运行原理简化图
+<iframe src="//player.bilibili.com/player.html?aid=79369531&cid=135826038&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+
+<p>推杆可以在2mm的铜管内部自由移动.<br>推杆顶部连接到一个很小的六边形上,六边形每个边都套有金属管转轴.每个金属管转轴通过铜丝,连接到<strong>几字型的花瓣推杆</strong>.<br><strong>几字型的花瓣推杆</strong>中间部位也有自由转动的金属管转轴.<br>当推动推杆时,推杆顶部的六边形,自然带动花瓣部分的推杆,由此完成了开花和闭合的功能.</p>
+<p><strong>几字型的花瓣推杆和推杆顶部中心六边形如下图所示</strong><br><img src="/images/mechflower.resources/%E4%B8%AD%E5%BF%83%E6%8E%A8%E6%9D%86.jpeg" alt="a3d3eaf10274ef294de9176bbae1e103"></p>
+<p><strong>几字型推杆和推杆顶部中心六边形通过铜丝连接</strong><br><img src="/images/mechflower.resources/%E5%8F%B6%E8%84%89%E8%BF%9E%E6%8E%A5%E6%9D%86.jpg" alt="16b27c6fe36516d4c6bc63fa6be44468"></p>
+<p>铜丝的长度,需要自己估量下.能够完成开合即可.<br>这也跟下面的花梗部分有关,所以牵扯的部分较多.</p>
+<p>为了焊接推杆顶部的六边形,jipraus给出了另一张图,也是一个嵌套的六边形,只是更小了而已.<br><img src="/images/mechflower.resources/pushrod-pattern_pe7oQ3mlYL.jpeg" alt="fd7a8075668c8bbb9741c26589920a11"><br>如上图所示,中心最小的红色六边形即为推杆顶部的六边形.</p>
+<p>注意事项:</p>
+<ul>
+<li>制作推杆顶部六边形时,每弯曲一个边,就要切一个2mm长度的铜管,套在这条边上.每条边都要稍微比铜管长点.确保铜管可以自由转动.</li>
+<li>由于推杆顶部的六边形和花瓣的<strong>几字型</strong>推杆通过铜丝连接,铜丝的长度需要综合花梗部分来进行确认.我采用的办法是.将整个花瓣合起来,比较下推杆顶部六边形的位置,并大概确认花梗的长度,而后进行焊接验证.此处需要确定连接部分铜丝的长度.</li>
+<li><strong>推荐先将推杆中心的小六边形和几字型推杆焊接完成后.再将其几字型推杆焊接到花瓣边缘线上.</strong></li>
+</ul>
+<h5 id="花梗部分的制作"><a href="#花梗部分的制作" class="headerlink" title="花梗部分的制作"></a>花梗部分的制作</h5><p>花梗部分,也就是花托部分.当完成了以上动作后,为了能够完成开合动作,则需要将整个花朵固定在推杆外部的铜管上.<br>制作的时候,需要保证茎和花朵的六边形底部完全垂直,并茎在中心位置.</p>
+<p><img src="/images/mechflower.resources/p2072976_ar6TYcBghM.jpeg" alt="65160fc3fb6eabd890d5c16f07d4efee"></p>
+<p>注意事项</p>
+<ul>
+<li>焊接时可以将整个花朵倒立起来.</li>
+<li>根据三点组成一个平面的原理,可以间隔一条边去焊接花朵底部六边形的顶点.这样只需要三个焊点,即可稳定整个郁金香.也能给后续调整带来更多的便利.</li>
+</ul>
+<h3 id="中心花蕊的制作"><a href="#中心花蕊的制作" class="headerlink" title="中心花蕊的制作"></a>中心花蕊的制作</h3><p>当进行到这一步时,真心的出了一大口气.以上部分是最为核心的关键点.如果制作过程中没能够保持相应精度,则会影响花朵的开合及整体流畅性.<br>所以,以上部分是整个机械郁金香的重中之重.<br>当制作到这儿的时候,可以长舒一口气了.接下来相对而言会比较简单.但也不要掉以轻心.<br>中心花蕊,是通过菊花链的方式连接所有的WS2812B三色LED,并且其中6个LED以45度角固定在两个六边形上,还有一个焊接在顶部六边形的中心.测试整个花蕊可以正常点亮后,再将花蕊焊接到花朵底部的六边形.此时,只要焊接对应的六个顶点即可.而整体花蕊,需要摆放在花朵内侧,确保不要影响花朵的开合,可尽量靠近底部. </p>
+<p>由电路视角来看:<br>顶部小六边形为VCC,底部大六边形为GND.且VCC需要连接到控制器的VCC端口,以保证供电.底部大六边形由于连接到了花朵底部的六边形,故已经关联了GND.<br>我是选取顶部六边形中心的led的DIN连接到了Arduino的GPIO,大家也可以自己根据自己的习惯,完成菊花链即可.</p>
+<p>可以参考下图完成的<img src="/images/mechflower.resources/%E9%92%A2%E9%93%81%E4%BE%A0%E6%A0%B8%E5%BF%83%E5%9B%BE.jpeg" alt="1d1f72c3d99bd6992b2a59eb10c6145d"><br><img src="/images/mechflower.resources/%E9%92%A2%E9%93%81%E4%BE%A0%E6%A0%B8%E5%BF%83%E5%9B%BE%E7%82%B9%E4%BA%AE.jpeg" alt="649d6ea81b5bd014d19b89fda958e3e7"></p>
+<p>WS2812B引脚示意图<br><img src="/images/mechflower.resources/0CF31F29-3C81-4EEE-8EA4-669EA3C1E142.png" alt="40329e7e37b869f677fb963763799cb2"><br>如有其他问题,可详细参考<a href="https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" target="_blank" rel="noopener">WS2812B DataSheet</a></p>
+<p>苦于只有一把尖嘴钳,并且没有夹具,随性捏了两个六边形.<br>并且,只能趴在地上进行焊接.自己的焊工,都不忍心看.<br>所以,这个故事告诉我们.<br>工欲善其事,必先利其器.(甩锅焊工)<br>如果对精度要求较高,可在图纸上继续嵌套对应的六边形.按照图纸,进行花蕊的制作.<br><img src="/images/mechflower.resources/wx_camera_1567349218175.jpg" alt="39c8ff0367b422c785b84e5b36f4ee62"></p>
+<p>注意事项:</p>
+<ul>
+<li>测试部分,可以在最后找到我的源码烧录进去,按照README进行操作即可.也可烧录其他测试WS2812B的代码,搜索FastLED即可.</li>
+</ul>
+<h3 id="最后的安装调试"><a href="#最后的安装调试" class="headerlink" title="最后的安装调试"></a>最后的安装调试</h3><p>终于来到了最后一步.大家加油.<br>6片花瓣的LED,再加上花蕊的VCC和DIN的两根,都要通过漆包线连接到Arduino的板子.<br>如果想要简单方便,那就直接理清线束后,贴着推杆安置线路.<br>但要确保,花瓣能够自由移动,并且不会对漆包线造成损伤.</p>
+<p>jipraus的方式如下图<br><img src="/images/mechflower.resources/A0B1D4A0-757E-4C17-A36C-9D2DEA3FA538.jpg" alt="8120e87ce1a467cdd52a24e0659afc8d"></p>
+<p>通过扎带束紧漆包线,而后用透明的强力胶水(502即可)点下线束<br>而后,沿着花茎均匀的缠绕.如下图所示:<br><img src="/images/mechflower.resources/FB36A288-8D62-4E64-A9B8-052F6F8CF43F.jpg" alt="e2059a6e991ff3587f3b97257b8d9bbd"></p>
+<p>花瓣的漆包线,连接Arduino之前,每一根都需要增加200欧的电阻,也可根据自己手头的电阻,测试下亮度没问题,也都可以使用.</p>
+<p>而后将郁金香安装在底座上,并连接到NodeMcu板子和驱动电机.</p>
+<h3 id="其他细节问题"><a href="#其他细节问题" class="headerlink" title="其他细节问题"></a>其他细节问题</h3><h4 id="触摸元件"><a href="#触摸元件" class="headerlink" title="触摸元件"></a>触摸元件</h4><p>我由于使用的是NodeMcu(ESP8266),所以是通过手机进行的控制,就没有采用触摸的方式,所以触摸部分进行了省略,可参考附录部分的原始连接.<br>如有疑问也都可以给我的邮箱发邮件,或在github上,提交issue.</p>
+<h4 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h4><p><a href="https://github.com/jdwang001/nodemcu-mechflower" target="_blank" rel="noopener">我的机械郁金香源代码NodeMcu版本</a><br><a href="https://www.hackster.io/jiripraus/ever-blooming-mechanical-tulip-1b0323" target="_blank" rel="noopener">原教程地址(包含原作者的源代码)</a><br><a href="https://twitter.com/jipraus" target="_blank" rel="noopener">机械郁金香作者的Twitter</a></p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>需要大家支持⬇️⬇️玩摩托,惭愧,惭愧.</div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="Darkknight 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="Darkknight 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Darkknight
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://jdwang001.github.io/2019/12/06/%E6%9C%BA%E6%A2%B0%E9%83%81%E9%87%91%E9%A6%99mechflower/" title="机械郁金香mechflower">http://jdwang001.github.io/2019/12/06/%E6%9C%BA%E6%A2%B0%E9%83%81%E9%87%91%E9%A6%99mechflower/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/mechflower/" rel="tag"># mechflower</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/11/29/go-cannot-determine-module-path-for-source-directory-tmp-wzd-outside-GOPATH-no-import-comments/" rel="prev" title="go: cannot determine module path for source directory /tmp/wzd (outside GOPATH, no import comments)">
+      <i class="fa fa-chevron-left"></i> go: cannot determine module path for source directory /tmp/wzd (outside GOPATH, no import comments)
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#机械郁金香mechflower制作教程"><span class="nav-number">1.</span> <span class="nav-text">机械郁金香mechflower制作教程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#制作完成的视频"><span class="nav-number">1.1.</span> <span class="nav-text">制作完成的视频</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#郁金香工作原理"><span class="nav-number">1.2.</span> <span class="nav-text">郁金香工作原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#购物清单"><span class="nav-number">1.3.</span> <span class="nav-text">购物清单</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#购物链接"><span class="nav-number">1.4.</span> <span class="nav-text">购物链接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#铜丝铜管焊接"><span class="nav-number">1.5.</span> <span class="nav-text">铜丝铜管焊接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#花瓣制作"><span class="nav-number">1.6.</span> <span class="nav-text">花瓣制作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#花瓣焊接视频"><span class="nav-number">1.7.</span> <span class="nav-text">花瓣焊接视频</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#焊接完成后的验证"><span class="nav-number">1.7.1.</span> <span class="nav-text">焊接完成后的验证</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#焊接全部花瓣"><span class="nav-number">1.8.</span> <span class="nav-text">焊接全部花瓣</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#推杆和花梗的制作"><span class="nav-number">1.9.</span> <span class="nav-text">推杆和花梗的制作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#推杆运行原理视频"><span class="nav-number">1.10.</span> <span class="nav-text">推杆运行原理视频</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#花梗部分的制作"><span class="nav-number">1.10.1.</span> <span class="nav-text">花梗部分的制作</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中心花蕊的制作"><span class="nav-number">2.</span> <span class="nav-text">中心花蕊的制作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最后的安装调试"><span class="nav-number">3.</span> <span class="nav-text">最后的安装调试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他细节问题"><span class="nav-number">4.</span> <span class="nav-text">其他细节问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#触摸元件"><span class="nav-number">4.1.</span> <span class="nav-text">触摸元件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#附录"><span class="nav-number">4.2.</span> <span class="nav-text">附录</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Darkknight"
+      src="/images/wln.jpg">
+  <p class="site-author-name" itemprop="name">Darkknight</p>
+  <div class="site-description" itemprop="description">嵌入式、openwrt、c、前端</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/jdwang001" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;jdwang001" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/mailto:lhylrry1100@126.com" title="E-Mail → mailto:lhylrry1100@126.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.bilibili.com/video/av68451133" title="bilibili → https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;av68451133" rel="noopener" target="_blank"><i class="fa fa-fw fa-tv"></i>bilibili</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">[object Object]</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.5.0
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
