@@ -47,15 +47,15 @@
   };
 </script>
 
-  <meta name="description" content="TP-Link703（ar71xx)增加实时时钟（RTC ds1307）RTC通讯GPIO选取openwrt pcb板上相应空闲GPIO端口，作为与I2C芯片通讯端口。通过GPIO模拟I2C总线时序来实现与扩展I2C芯片通讯。若无法确定当前GPIO端口，参考openwrt GPIO官方wiki确定连接的GPIO。 内核开启RTC支持编辑target&#x2F;linux&#x2F;ar71xx&#x2F;Makefile，添加">
+  <meta name="description" content="TP-Link703（ar71xx)增加实时时钟（RTC ds1307）RTC通讯GPIO选取openwrt pcb板上相应空闲GPIO端口，作为与I2C芯片通讯端口。通过GPIO模拟I2C总线时序来实现与扩展I2C芯片通讯。若无法确定当前GPIO端口，参考openwrt GPIO官方wiki确定连接的GPIO。">
 <meta name="keywords" content="openwrt rtc i2c">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OpenWrt 添加 RTC">
 <meta property="og:url" content="http:&#x2F;&#x2F;jdwang001.github.io&#x2F;2015&#x2F;06&#x2F;30&#x2F;OpenWrt-%E6%B7%BB%E5%8A%A0-RTC&#x2F;index.html">
 <meta property="og:site_name" content="善能">
-<meta property="og:description" content="TP-Link703（ar71xx)增加实时时钟（RTC ds1307）RTC通讯GPIO选取openwrt pcb板上相应空闲GPIO端口，作为与I2C芯片通讯端口。通过GPIO模拟I2C总线时序来实现与扩展I2C芯片通讯。若无法确定当前GPIO端口，参考openwrt GPIO官方wiki确定连接的GPIO。 内核开启RTC支持编辑target&#x2F;linux&#x2F;ar71xx&#x2F;Makefile，添加">
+<meta property="og:description" content="TP-Link703（ar71xx)增加实时时钟（RTC ds1307）RTC通讯GPIO选取openwrt pcb板上相应空闲GPIO端口，作为与I2C芯片通讯端口。通过GPIO模拟I2C总线时序来实现与扩展I2C芯片通讯。若无法确定当前GPIO端口，参考openwrt GPIO官方wiki确定连接的GPIO。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-26T11:02:36.393Z">
+<meta property="og:updated_time" content="2019-12-25T06:42:08.048Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://jdwang001.github.io/2015/06/30/OpenWrt-%E6%B7%BB%E5%8A%A0-RTC/">
@@ -252,7 +252,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-26 19:02:36" itemprop="dateModified" datetime="2019-11-26T19:02:36+08:00">2019-11-26</time>
+                <time title="修改时间：2019-12-25 14:42:08" itemprop="dateModified" datetime="2019-12-25T14:42:08+08:00">2019-12-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -285,6 +285,7 @@
 
       
         <h2 id="TP-Link703（ar71xx-增加实时时钟（RTC-ds1307）"><a href="#TP-Link703（ar71xx-增加实时时钟（RTC-ds1307）" class="headerlink" title="TP-Link703（ar71xx)增加实时时钟（RTC ds1307）"></a>TP-Link703（ar71xx)增加实时时钟（RTC ds1307）</h2><h3 id="RTC通讯GPIO"><a href="#RTC通讯GPIO" class="headerlink" title="RTC通讯GPIO"></a>RTC通讯GPIO</h3><p>选取openwrt pcb板上相应空闲GPIO端口，作为与I2C芯片通讯端口。<br>通过GPIO模拟I2C总线时序来实现与扩展I2C芯片通讯。<br>若无法确定当前GPIO端口，参考<a href="http://wiki.openwrt.org/doc/hardware/port.gpio" target="_blank" rel="noopener">openwrt GPIO官方wiki</a>确定连接的GPIO。</p>
+<a id="more"></a> 
 <h3 id="内核开启RTC支持"><a href="#内核开启RTC支持" class="headerlink" title="内核开启RTC支持"></a>内核开启RTC支持</h3><p>编辑target/linux/ar71xx/Makefile，添加</p>
 <figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="deletion">-FEATURES:=squashfs jffs2 targz </span></span><br><span class="line"><span class="addition">+FEATURES:=squashfs jffs2 targz rtc</span></span><br></pre></td></tr></table></figure>
 

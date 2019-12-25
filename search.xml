@@ -114,6 +114,7 @@
 <blockquote>
 <p>go: cannot determine module path for source directory /tmp/wzd (outside GOPATH, no import comments)</p>
 </blockquote>
+<a id="more"></a> 
 <p>此问题是,Go 1.13版本之后,默认使用Go Modules 模式,而/tmp/wzd目录,不在GOPATH/src/目录下,导致未能自动生成go.mod</p>
 <p>解决办法:</p>
 <figure class="highlight applescript"><table><tr><td class="code"><pre><span class="line">go <span class="keyword">mod</span> init your-dir-<span class="built_in">name</span></span><br></pre></td></tr></table></figure>
@@ -131,6 +132,7 @@
 <li>不熟悉spf13安装插件方法  </li>
 <li>想使用YouCompleteMe，C补全，并可跳转到相关函数定义或声明</li>
 </ul>
+<a id="more"></a> 
 <h2 id="完成安装后的想法"><a href="#完成安装后的想法" class="headerlink" title="完成安装后的想法"></a>完成安装后的想法</h2><p>YoucompleteMe的难点，只在于自动跳转和Ultisnips的自动补全<br>基于spf13安装的YouCompleMe，已预设Ultisnips的绑定键操作<br>官方的推荐已经很不错，自动补全针对于#ifndef还是有问题，选中后只用Ctrl+j无反应<br>暂未解决<br>spf13会自动卸载相关冲突的自动补全<br><strong>参见:</strong></p>
 <figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line">vim ~<span class="string">/.vimrc</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="number">691</span> <span class="comment">" remap Ultisnips for compatibility for YCM</span></span><br><span class="line"><span class="number">692</span> <span class="keyword">let</span> <span class="variable">g:UltiSnipsExpandTrigger</span> = <span class="string">'&lt;C-j&gt;'</span></span><br><span class="line"><span class="number">693</span> <span class="keyword">let</span> <span class="variable">g:UltiSnipsJumpForwardTrigger</span> = <span class="string">'&lt;C-j&gt;'</span></span><br><span class="line"><span class="number">694</span> <span class="keyword">let</span> <span class="variable">g:UltiSnipsJumpBackwardTrigger</span> = <span class="string">'&lt;C-k&gt;'</span></span><br></pre></td></tr></table></figure>
@@ -195,6 +197,9 @@
 <li><strong>退出当前编译环境后，怎样重回LFS的编译环境</strong></li>
 </ul>
 <p>LFS 主要是帮助大家理解Linux系统整体流程，通读文档，就会有一个很好的了解。<br>那么进行此次编译的目的，也就达到。</p>
+<a id="more"></a>
+
+
 <h2 id="LFS7-7-在线阅读"><a href="#LFS7-7-在线阅读" class="headerlink" title="LFS7.7 在线阅读"></a>LFS7.7 在线阅读</h2><p><a href="http://www.linuxfromscratch.org/lfs/downloads/7.7/LFS-BOOK-7.7-NOCHUNKS.html" target="_blank" rel="noopener">LFS7.7 官方在线阅读地址</a>  </p>
 <ul>
 <li><strong>请注意查阅最新章节</strong><h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2></li>
@@ -273,6 +278,7 @@
     <title>OpenWrt 添加 RTC</title>
     <url>/2015/06/30/OpenWrt-%E6%B7%BB%E5%8A%A0-RTC/</url>
     <content><![CDATA[<h2 id="TP-Link703（ar71xx-增加实时时钟（RTC-ds1307）"><a href="#TP-Link703（ar71xx-增加实时时钟（RTC-ds1307）" class="headerlink" title="TP-Link703（ar71xx)增加实时时钟（RTC ds1307）"></a>TP-Link703（ar71xx)增加实时时钟（RTC ds1307）</h2><h3 id="RTC通讯GPIO"><a href="#RTC通讯GPIO" class="headerlink" title="RTC通讯GPIO"></a>RTC通讯GPIO</h3><p>选取openwrt pcb板上相应空闲GPIO端口，作为与I2C芯片通讯端口。<br>通过GPIO模拟I2C总线时序来实现与扩展I2C芯片通讯。<br>若无法确定当前GPIO端口，参考<a href="http://wiki.openwrt.org/doc/hardware/port.gpio" target="_blank" rel="noopener">openwrt GPIO官方wiki</a>确定连接的GPIO。</p>
+<a id="more"></a> 
 <h3 id="内核开启RTC支持"><a href="#内核开启RTC支持" class="headerlink" title="内核开启RTC支持"></a>内核开启RTC支持</h3><p>编辑target/linux/ar71xx/Makefile，添加</p>
 <figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"><span class="deletion">-FEATURES:=squashfs jffs2 targz </span></span><br><span class="line"><span class="addition">+FEATURES:=squashfs jffs2 targz rtc</span></span><br></pre></td></tr></table></figure>
 

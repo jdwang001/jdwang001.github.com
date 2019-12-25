@@ -2,6 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://jdwang001.github.io/2019/11/29/go-cannot-determine-module-path-for-source-directory-tmp-wzd-outside-GOPATH-no-import-comments/</loc>
+    
+    <lastmod>2019-12-25T06:42:31.313Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jdwang001.github.io/2015/09/06/spf13%E9%85%8D%E7%BD%AEYouCompleteMe/</loc>
+    
+    <lastmod>2019-12-25T06:42:19.854Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jdwang001.github.io/2015/06/30/OpenWrt-%E6%B7%BB%E5%8A%A0-RTC/</loc>
+    
+    <lastmod>2019-12-25T06:42:08.048Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jdwang001.github.io/2015/07/25/LFS7-7%E7%BC%96%E8%AF%91%E8%A6%81%E7%82%B9/</loc>
+    
+    <lastmod>2019-12-25T06:41:45.706Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://jdwang001.github.io/2019/12/06/%E6%9C%BA%E6%A2%B0%E9%83%81%E9%87%91%E9%A6%99mechflower/</loc>
     
     <lastmod>2019-12-25T06:31:06.102Z</lastmod>
@@ -12,13 +40,6 @@
     <loc>http://jdwang001.github.io/about/index.html</loc>
     
     <lastmod>2019-12-24T05:55:11.043Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jdwang001.github.io/2019/11/29/go-cannot-determine-module-path-for-source-directory-tmp-wzd-outside-GOPATH-no-import-comments/</loc>
-    
-    <lastmod>2019-11-29T07:45:35.120Z</lastmod>
     
   </url>
   
@@ -44,30 +65,9 @@
   </url>
   
   <url>
-    <loc>http://jdwang001.github.io/2015/09/06/spf13%E9%85%8D%E7%BD%AEYouCompleteMe/</loc>
-    
-    <lastmod>2019-11-26T11:02:36.395Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jdwang001.github.io/2015/07/25/LFS7-7%E7%BC%96%E8%AF%91%E8%A6%81%E7%82%B9/</loc>
-    
-    <lastmod>2019-11-26T11:02:36.394Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://jdwang001.github.io/2015/06/15/%E5%AD%A6%E4%B9%A0%E9%A1%B9/</loc>
     
     <lastmod>2019-11-26T11:02:36.394Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jdwang001.github.io/2015/06/30/OpenWrt-%E6%B7%BB%E5%8A%A0-RTC/</loc>
-    
-    <lastmod>2019-11-26T11:02:36.393Z</lastmod>
     
   </url>
   

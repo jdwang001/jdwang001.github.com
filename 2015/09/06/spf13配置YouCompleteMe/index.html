@@ -47,15 +47,15 @@
   };
 </script>
 
-  <meta name="description" content="spf13配置YouCompleteMe本文适用 不熟悉spf13安装插件方法   想使用YouCompleteMe，C补全，并可跳转到相关函数定义或声明  完成安装后的想法YoucompleteMe的难点，只在于自动跳转和Ultisnips的自动补全基于spf13安装的YouCompleMe，已预设Ultisnips的绑定键操作官方的推荐已经很不错，自动补全针对于#ifndef还是有问题，选中后">
+  <meta name="description" content="spf13配置YouCompleteMe本文适用 不熟悉spf13安装插件方法   想使用YouCompleteMe，C补全，并可跳转到相关函数定义或声明">
 <meta name="keywords" content="sfp13 YouCompleteMe">
 <meta property="og:type" content="article">
 <meta property="og:title" content="spf13配置YouCompleteMe">
 <meta property="og:url" content="http:&#x2F;&#x2F;jdwang001.github.io&#x2F;2015&#x2F;09&#x2F;06&#x2F;spf13%E9%85%8D%E7%BD%AEYouCompleteMe&#x2F;index.html">
 <meta property="og:site_name" content="善能">
-<meta property="og:description" content="spf13配置YouCompleteMe本文适用 不熟悉spf13安装插件方法   想使用YouCompleteMe，C补全，并可跳转到相关函数定义或声明  完成安装后的想法YoucompleteMe的难点，只在于自动跳转和Ultisnips的自动补全基于spf13安装的YouCompleMe，已预设Ultisnips的绑定键操作官方的推荐已经很不错，自动补全针对于#ifndef还是有问题，选中后">
+<meta property="og:description" content="spf13配置YouCompleteMe本文适用 不熟悉spf13安装插件方法   想使用YouCompleteMe，C补全，并可跳转到相关函数定义或声明">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-26T11:02:36.395Z">
+<meta property="og:updated_time" content="2019-12-25T06:42:19.854Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://jdwang001.github.io/2015/09/06/spf13%E9%85%8D%E7%BD%AEYouCompleteMe/">
@@ -252,7 +252,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-26 19:02:36" itemprop="dateModified" datetime="2019-11-26T19:02:36+08:00">2019-11-26</time>
+                <time title="修改时间：2019-12-25 14:42:19" itemprop="dateModified" datetime="2019-12-25T14:42:19+08:00">2019-12-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -288,6 +288,7 @@
 <li>不熟悉spf13安装插件方法  </li>
 <li>想使用YouCompleteMe，C补全，并可跳转到相关函数定义或声明</li>
 </ul>
+<a id="more"></a> 
 <h2 id="完成安装后的想法"><a href="#完成安装后的想法" class="headerlink" title="完成安装后的想法"></a>完成安装后的想法</h2><p>YoucompleteMe的难点，只在于自动跳转和Ultisnips的自动补全<br>基于spf13安装的YouCompleMe，已预设Ultisnips的绑定键操作<br>官方的推荐已经很不错，自动补全针对于#ifndef还是有问题，选中后只用Ctrl+j无反应<br>暂未解决<br>spf13会自动卸载相关冲突的自动补全<br><strong>参见:</strong></p>
 <figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~<span class="string">/.vimrc</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">691</span> <span class="comment">" remap Ultisnips for compatibility for YCM</span></span><br><span class="line"><span class="number">692</span> <span class="keyword">let</span> <span class="variable">g:UltiSnipsExpandTrigger</span> = <span class="string">'&lt;C-j&gt;'</span></span><br><span class="line"><span class="number">693</span> <span class="keyword">let</span> <span class="variable">g:UltiSnipsJumpForwardTrigger</span> = <span class="string">'&lt;C-j&gt;'</span></span><br><span class="line"><span class="number">694</span> <span class="keyword">let</span> <span class="variable">g:UltiSnipsJumpBackwardTrigger</span> = <span class="string">'&lt;C-k&gt;'</span></span><br></pre></td></tr></table></figure>
