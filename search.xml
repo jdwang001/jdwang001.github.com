@@ -5,11 +5,11 @@
     <url>/2019/12/06/%E6%9C%BA%E6%A2%B0%E9%83%81%E9%87%91%E9%A6%99mechflower/</url>
     <content><![CDATA[<h3 id="机械郁金香mechflower制作教程"><a href="#机械郁金香mechflower制作教程" class="headerlink" title="机械郁金香mechflower制作教程"></a>机械郁金香mechflower制作教程</h3><p>刷Twitter的时候,看到了<a href="https://twitter.com/jipraus" target="_blank" rel="noopener">jipraus</a>制作的机械郁金香,自己很是喜欢,正好我手头也有NodeMcu V1.0(ESP8266的板子),外加步进电机及其驱动模块.<br>便以此为契机,进行了仿制.</p>
 <h4 id="制作完成的视频"><a href="#制作完成的视频" class="headerlink" title="制作完成的视频"></a>制作完成的视频</h4><iframe src="//player.bilibili.com/player.html?aid=68451133&cid=118634896&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+<a id="more"></a> 
+虽然通读了教程,也意识到了相关部分的难度,可是在制作过程中还是经历了不少问题.由此也想给大家分享下其中的关键点.
+刚开始制作时,对于作者所说的
+>好几次想把所有东西扔进垃圾桶
 
-<p>虽然通读了教程,也意识到了相关部分的难度,可是在制作过程中还是经历了不少问题.由此也想给大家分享下其中的关键点.<br>刚开始制作时,对于作者所说的</p>
-<blockquote>
-<p>好几次想把所有东西扔进垃圾桶</p>
-</blockquote>
 <p>都有些不以为然.<br>而当自己后续制作时,每每遇到了抓狂的问题,却是深以为是.<br>由此总结下自己的心得,也给国内的爱好者提供些方法,好解决制作过程中遇到的问题.<br>程序源码都在最后附有连接.<br>闲言少叙,教程正式开始.</p>
 <h4 id="郁金香工作原理"><a href="#郁金香工作原理" class="headerlink" title="郁金香工作原理"></a>郁金香工作原理</h4><p>简单来说,整个郁金香由6片花瓣组成,每一片都包含五个白色的LED.每片花瓣都需要连接到Arduino的一个输出端口.花蕊由7个WS2812B RGB三色LED组成,并被6片花瓣包裹起来.<br>从电路的观点来看,整个花是GND,而叶脉都是VCC.<br>花瓣的开合是由推杆推动的.推杆推到顶部,花朵盛开,<br>推杆拉到底部,花朵关闭.而推杆是由一个减速电机驱动.<br>jipraus的原始版本,还有一个触摸开关,通过触摸开关控制开合.我这个版本由于是通过手机控制,所以就直接省略了,如果需要的话可以参考附录的原教程链接.</p>
 <h4 id="购物清单"><a href="#购物清单" class="headerlink" title="购物清单"></a>购物清单</h4><ul>
