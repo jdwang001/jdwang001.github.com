@@ -1,3 +1,4 @@
+http://jdwang001.github.io/2020/04/08/Internal-error-Please-report-to-https-youtrack-jetbrains-com-pycharm%E6%97%A0%E6%B3%95%E5%90%AF%E5%8A%A8/
 http://jdwang001.github.io/2019/12/06/%E6%9C%BA%E6%A2%B0%E9%83%81%E9%87%91%E9%A6%99mechflower/
 http://jdwang001.github.io/2019/11/29/go-cannot-determine-module-path-for-source-directory-tmp-wzd-outside-GOPATH-no-import-comments/
 http://jdwang001.github.io/2015/09/06/spf13%E9%85%8D%E7%BD%AEYouCompleteMe/

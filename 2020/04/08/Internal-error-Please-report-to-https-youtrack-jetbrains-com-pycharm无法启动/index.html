@@ -48,16 +48,18 @@
   };
 </script>
 
-  <meta name="description" content="嵌入式、openwrt、c、前端">
-<meta property="og:type" content="website">
-<meta property="og:title" content="善能">
-<meta property="og:url" content="http://jdwang001.github.io/categories/Linux/index.html">
+  <meta name="description" content="上班后,打开pycharm突然发现无法启动,报错信息如标题所示.通过查阅jetbrains官方文档链接得出问题的根源,为自己升级jdk后导致.">
+<meta name="keywords" content="idea pycharm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Internal error. Please report to https:&#x2F;&#x2F;youtrack.jetbrains.com pycharm无法启动">
+<meta property="og:url" content="http://jdwang001.github.io/2020/04/08/Internal-error-Please-report-to-https-youtrack-jetbrains-com-pycharm%E6%97%A0%E6%B3%95%E5%90%AF%E5%8A%A8/index.html">
 <meta property="og:site_name" content="善能">
-<meta property="og:description" content="嵌入式、openwrt、c、前端">
+<meta property="og:description" content="上班后,打开pycharm突然发现无法启动,报错信息如标题所示.通过查阅jetbrains官方文档链接得出问题的根源,为自己升级jdk后导致.">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-04-08T03:03:53.410Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://jdwang001.github.io/categories/Linux/">
+<link rel="canonical" href="http://jdwang001.github.io/2020/04/08/Internal-error-Please-report-to-https-youtrack-jetbrains-com-pycharm%E6%97%A0%E6%B3%95%E5%90%AF%E5%8A%A8/">
 
 
 <script id="page-configurations">
@@ -65,13 +67,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false,
+    isPost: true,
     isPage: false,
     isArchive: false
   };
 </script>
 
-  <title>分类: Linux | 善能</title>
+  <title>Internal error. Please report to https://youtrack.jetbrains.com pycharm无法启动 | 善能</title>
   
 
 
@@ -216,50 +218,134 @@
           <div class="content">
             
 
+  <div class="posts-expand">
+      
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">Linux
-          <small>分类</small>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://jdwang001.github.io/2020/04/08/Internal-error-Please-report-to-https-youtrack-jetbrains-com-pycharm%E6%97%A0%E6%B3%95%E5%90%AF%E5%8A%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/wln.jpg">
+      <meta itemprop="name" content="Darkknight">
+      <meta itemprop="description" content="嵌入式、openwrt、c、前端">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="善能">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          Internal error. Please report to https://youtrack.jetbrains.com pycharm无法启动
         </h2>
-      </div>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-04-08 10:39:11 / 修改时间：11:03:53" itemprop="dateCreated datePublished" datetime="2020-04-08T10:39:11+08:00">2020-04-08</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <h2 class="collection-header">2015</h2>
+        <p>上班后,打开pycharm突然发现无法启动,报错信息如标题所示.<br>通过查阅<br><a href="https://intellij-support.jetbrains.com/hc/en-us/articles/206544879-Selecting-the-JDK-version-the-IDE-will-run-under" target="_blank" rel="noopener">jetbrains官方文档链接</a><br>得出问题的根源,为自己升级jdk后导致.</p>
+<a id="more"></a> 
+<h3 id="解决此问题的方式如下"><a href="#解决此问题的方式如下" class="headerlink" title="解决此问题的方式如下"></a>解决此问题的方式如下</h3><p>通过终端输入<br> <code>/usr/libexec/java_home -V</code><br> 得到本机安装的jdk信息  </p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Matching Java Virtual Machines (<span class="number">2</span>):</span><br><span class="line">    <span class="number">12.0</span><span class="number">.1</span>, <span class="string">x86_64:</span>	<span class="string">"OpenJDK 12.0.1"</span>	<span class="regexp">/Library/</span>Java<span class="regexp">/JavaVirtualMachines/</span>openjdk<span class="number">-12.0</span><span class="number">.1</span>.jdk<span class="regexp">/Contents/</span>Home</span><br><span class="line">    <span class="number">1.8</span><span class="number">.0</span>_45, <span class="string">x86_64:</span>	<span class="string">"Java SE 8"</span>	<span class="regexp">/Library/</span>Java<span class="regexp">/JavaVirtualMachines/</span>jdk1<span class="number">.8</span><span class="number">.0</span>_45.jdk<span class="regexp">/Contents/</span>Home</span><br><span class="line"></span><br><span class="line"><span class="regexp">/Library/</span>Java<span class="regexp">/JavaVirtualMachines/</span>openjdk<span class="number">-12.0</span><span class="number">.1</span>.jdk<span class="regexp">/Contents/</span>Home</span><br></pre></td></tr></table></figure>
+<p>我最初为jdk1.8,升级到OpenJDK12.所以,只需要配置pycharm的jdk版本为jdk1.8即可.</p>
+<p>在 <code>~/Library/Preferences/</code>目录下查找自己的pycharm路径,我本机为<code>~/Library/Preferences/PyCharm40</code>,而后在此目录下创建<em>pycharm.jdk</em>文件,并在文件内填入自己的jdk路径.   </p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat pycharm.jdk                                                 </span><br><span class="line">/Library/Java/JavaVirtualMachines/jdk1<span class="number">.8</span><span class="number">.0</span>_45.jdk</span><br></pre></td></tr></table></figure>
+<p>把文件内容,替换为查询得到的jdk路径即可,如果jdk缺失,则自行安装对应版本的jdk即可.</p>
+<p>针对idea需按照相同方式</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat ~<span class="regexp">/Library/</span>Preferences<span class="regexp">/IntelliJIdea14/i</span>dea.jdk</span><br><span class="line"><span class="regexp">/Library/</span>Java<span class="regexp">/JavaVirtualMachines/</span>jdk1.<span class="number">8.0</span>_45.jdk</span><br></pre></td></tr></table></figure>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2015-07-25T00:50:35+08:00"
-              content="2015-07-25">
-          07-25
-        </time>
+    
+    
+    
+        <div class="reward-container">
+  <div>需要大家支持⬇️⬇️玩摩托,惭愧,惭愧.</div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="Darkknight 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="Darkknight 支付宝">
+        <p>支付宝</p>
       </div>
 
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2015/07/25/LFS7-7%E7%BC%96%E8%AF%91%E8%A6%81%E7%82%B9/" itemprop="url">
-            <span itemprop="name">LFS7.7编译要点</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-    </div>
   </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Darkknight
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://jdwang001.github.io/2020/04/08/Internal-error-Please-report-to-https-youtrack-jetbrains-com-pycharm%E6%97%A0%E6%B3%95%E5%90%AF%E5%8A%A8/" title="Internal error. Please report to https:&#x2F;&#x2F;youtrack.jetbrains.com pycharm无法启动">http://jdwang001.github.io/2020/04/08/Internal-error-Please-report-to-https-youtrack-jetbrains-com-pycharm%E6%97%A0%E6%B3%95%E5%90%AF%E5%8A%A8/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/idea-pycharm/" rel="tag"># idea pycharm</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/12/06/%E6%9C%BA%E6%A2%B0%E9%83%81%E9%87%91%E9%A6%99mechflower/" rel="prev" title="机械郁金香mechflower">
+      <i class="fa fa-chevron-left"></i> 机械郁金香mechflower
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
   
   
   
 
-  
-
+  </div>
 
 
           </div>
@@ -288,6 +374,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决此问题的方式如下"><span class="nav-number">1.</span> <span class="nav-text">解决此问题的方式如下</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

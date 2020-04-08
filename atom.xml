@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jdwang001.github.io/"/>
-  <updated>2019-12-25T06:31:06.102Z</updated>
+  <updated>2020-04-08T03:03:53.410Z</updated>
   <id>http://jdwang001.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Internal error. Please report to https://youtrack.jetbrains.com pycharm无法启动</title>
+    <link href="http://jdwang001.github.io/2020/04/08/Internal-error-Please-report-to-https-youtrack-jetbrains-com-pycharm%E6%97%A0%E6%B3%95%E5%90%AF%E5%8A%A8/"/>
+    <id>http://jdwang001.github.io/2020/04/08/Internal-error-Please-report-to-https-youtrack-jetbrains-com-pycharm%E6%97%A0%E6%B3%95%E5%90%AF%E5%8A%A8/</id>
+    <published>2020-04-08T02:39:11.000Z</published>
+    <updated>2020-04-08T03:03:53.410Z</updated>
+    
+    <content type="html"><![CDATA[<p>上班后,打开pycharm突然发现无法启动,报错信息如标题所示.<br>通过查阅<br><a href="https://intellij-support.jetbrains.com/hc/en-us/articles/206544879-Selecting-the-JDK-version-the-IDE-will-run-under" target="_blank" rel="noopener">jetbrains官方文档链接</a><br>得出问题的根源,为自己升级jdk后导致.</p><a id="more"></a> <h3 id="解决此问题的方式如下"><a href="#解决此问题的方式如下" class="headerlink" title="解决此问题的方式如下"></a>解决此问题的方式如下</h3><p>通过终端输入<br> <code>/usr/libexec/java_home -V</code><br> 得到本机安装的jdk信息  </p><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Matching Java Virtual Machines (<span class="number">2</span>):</span><br><span class="line">    <span class="number">12.0</span><span class="number">.1</span>, <span class="string">x86_64:</span><span class="string">"OpenJDK 12.0.1"</span><span class="regexp">/Library/</span>Java<span class="regexp">/JavaVirtualMachines/</span>openjdk<span class="number">-12.0</span><span class="number">.1</span>.jdk<span class="regexp">/Contents/</span>Home</span><br><span class="line">    <span class="number">1.8</span><span class="number">.0</span>_45, <span class="string">x86_64:</span><span class="string">"Java SE 8"</span><span class="regexp">/Library/</span>Java<span class="regexp">/JavaVirtualMachines/</span>jdk1<span class="number">.8</span><span class="number">.0</span>_45.jdk<span class="regexp">/Contents/</span>Home</span><br><span class="line"></span><br><span class="line"><span class="regexp">/Library/</span>Java<span class="regexp">/JavaVirtualMachines/</span>openjdk<span class="number">-12.0</span><span class="number">.1</span>.jdk<span class="regexp">/Contents/</span>Home</span><br></pre></td></tr></table></figure><p>我最初为jdk1.8,升级到OpenJDK12.所以,只需要配置pycharm的jdk版本为jdk1.8即可.</p><p>在 <code>~/Library/Preferences/</code>目录下查找自己的pycharm路径,我本机为<code>~/Library/Preferences/PyCharm40</code>,而后在此目录下创建<em>pycharm.jdk</em>文件,并在文件内填入自己的jdk路径.   </p><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat pycharm.jdk                                                 </span><br><span class="line">/Library/Java/JavaVirtualMachines/jdk1<span class="number">.8</span><span class="number">.0</span>_45.jdk</span><br></pre></td></tr></table></figure><p>把文件内容,替换为查询得到的jdk路径即可,如果jdk缺失,则自行安装对应版本的jdk即可.</p><p>针对idea需按照相同方式</p><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat ~<span class="regexp">/Library/</span>Preferences<span class="regexp">/IntelliJIdea14/i</span>dea.jdk</span><br><span class="line"><span class="regexp">/Library/</span>Java<span class="regexp">/JavaVirtualMachines/</span>jdk1.<span class="number">8.0</span>_45.jdk</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;上班后,打开pycharm突然发现无法启动,报错信息如标题所示.&lt;br&gt;通过查阅&lt;br&gt;&lt;a href=&quot;https://intellij-support.jetbrains.com/hc/en-us/articles/206544879-Selecting-the-JDK-version-the-IDE-will-run-under&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;jetbrains官方文档链接&lt;/a&gt;&lt;br&gt;得出问题的根源,为自己升级jdk后导致.&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="idea pycharm" scheme="http://jdwang001.github.io/tags/idea-pycharm/"/>
+    
+  </entry>
   
   <entry>
     <title>机械郁金香mechflower</title>
